@@ -35,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         secondTabNavigationControoller.tabBarItem = item2
 
         UITabBar.appearance().tintColor = .purple
-        UITabBar.appearance().backgroundColor = .lightGray
+        UITabBar.appearance().backgroundColor = .systemBackground
         
 
         let window = UIWindow(windowScene: windowScene)

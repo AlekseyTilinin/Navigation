@@ -9,22 +9,22 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    var dataSource = FeedModel(title: "Feed", description: "")
+   // var dataSource = FeedModel(title: "Feed", description: "")
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
+//    private let titleLabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = .black
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
+//
+//    private let descriptionLabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = .black
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
+//
     private let button: UIButton = {
         let button = UIButton()
         button.setTitle("Show some post", for: .normal)
@@ -45,10 +45,10 @@ class FeedViewController: UIViewController {
         setupConstraints()
         addTargets()
         
-        titleLabel.text = dataSource.title
-        descriptionLabel.text = dataSource.description
+        //titleLabel.text = dataSource.title
+        //descriptionLabel.text = dataSource.description
         
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
     }
     
     func addTargets() {
@@ -56,22 +56,39 @@ class FeedViewController: UIViewController {
     }
     
     func setupConstraints() {
-        view.addSubview(titleLabel)
-        view.addSubview(descriptionLabel)
+        //view.addSubview(titleLabel)
+        //view.addSubview(descriptionLabel)
         view.addSubview(button)
         
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
        
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-       
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
-            descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+//            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+//            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//
+//            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
+//            descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            navBarCustomization()
+        }
+        
+        func navBarCustomization () {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = .systemBackground
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
+            navigationController?.navigationBar.tintColor = .brown
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.compactAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            self.navigationItem.title = "Feed"
+        }
     
     @objc func showPostViewController() {
         let postViewController = PostViewController()
