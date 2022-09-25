@@ -11,6 +11,15 @@ class ProfileViewController: UIViewController {
     
     let profileHeaderView = ProfileHeaderView()
     
+    private let changeTitleButton: UIButton = {
+       let button = UIButton()
+        button.backgroundColor = .blue
+        button.setTitle("Change title", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -18,31 +27,34 @@ class ProfileViewController: UIViewController {
     
     func setupUI() {
         
-        //setupConstraints()
+        setupConstraints()
         
         view.backgroundColor = .lightGray
-        
-        view.addSubview(profileHeaderView)
-        
+        profileHeaderView.backgroundColor = .lightGray
+        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-//    func setupConstraints() {
-//
-//        view.addSubview(profileHeaderView)
-//
-//        NSLayoutConstraint.activate([
-//
-//            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-//            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-//
-//        ])
-//    }
+    func setupConstraints() {
+
+        view.addSubview(profileHeaderView)
+        view.addSubview(changeTitleButton)
+
+        NSLayoutConstraint.activate([
+
+            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
+            
+            changeTitleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            changeTitleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            changeTitleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+
+        ])
+    }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
-        profileHeaderView.frame = view.frame
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
