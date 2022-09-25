@@ -1,9 +1,7 @@
-//
 //  ProfileHeaderView.swift
 //  Navigation
 //
 //  Created by Aleksey on 13.09.2022.
-//
 
 import UIKit
 
@@ -12,7 +10,7 @@ class ProfileHeaderView: UIView {
     var statusText: String = ""
     
     private let avatarImageView: UIImageView = {
-        let imageView = UIImageView()
+      let imageView = UIImageView()
         imageView.image = UIImage(named: "SurprisedCat")
         imageView.layer.cornerRadius = 75
         imageView.layer.borderWidth = 3
@@ -41,7 +39,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private let statusTextField: UITextField = {
-        let textField = UITextField()
+      let textField = UITextField()
         textField.backgroundColor = .white
         textField.placeholder = "Enter status"
         textField.setPaddingPoints(10)
@@ -56,7 +54,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private let setStatusButton: UIButton = {
-        let button = UIButton()
+      let button = UIButton()
         button.backgroundColor = .blue
         button.setTitle("Set status", for: .normal)
         button.setTitleColor(.white, for: .normal)

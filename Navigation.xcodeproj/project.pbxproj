@@ -108,6 +108,7 @@
 		5BEBBE2F28BEE5FD0079FC73 /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
+				5BBAE5AF28C96B6F005C48D8 /* ProfileHeaderView.swift */,
 				5BEBBE2B28BECA750079FC73 /* ProfileViewController.swift */,
 				5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */,
 			);
