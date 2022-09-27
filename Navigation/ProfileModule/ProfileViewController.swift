@@ -71,6 +71,7 @@ class ProfileViewController: UIViewController {
             navigationController?.navigationBar.standardAppearance = appearance
             navigationController?.navigationBar.compactAppearance = appearance
             navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.isHidden = true
             self.navigationItem.title = "Profile"
         }
     
