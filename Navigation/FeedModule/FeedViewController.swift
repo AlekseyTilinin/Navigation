@@ -10,7 +10,7 @@ import UIKit
 class FeedViewController: UIViewController {
     
     private let stackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,7 +18,7 @@ class FeedViewController: UIViewController {
     }()
     
     private let showSomePostButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle("Show some post", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = .purple
@@ -28,7 +28,7 @@ class FeedViewController: UIViewController {
     }()
     
     private let showNewPostButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle("Show new post", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = .purple
@@ -65,22 +65,22 @@ class FeedViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            navBarCustomization()
-        }
-        
-        func navBarCustomization () {
-          let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = .systemBackground
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-            appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
-            navigationController?.navigationBar.tintColor = .brown
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.compactAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.isHidden = true
-            self.navigationItem.title = "Feed"
-        }
+        super.viewWillAppear(animated)
+        navBarCustomization()
+    }
+    
+    func navBarCustomization () {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .systemBackground
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
+        navigationController?.navigationBar.tintColor = .brown
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.isHidden = true
+        self.navigationItem.title = "Feed"
+    }
     
     @objc func showPostViewController() {
         let postViewController = PostViewController()
