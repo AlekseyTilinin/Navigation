@@ -16,6 +16,7 @@ class ProfileHeaderView: UIView {
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -72,6 +73,18 @@ class ProfileHeaderView: UIView {
         setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
     
+    func addGestures() {
+        let avatrTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarTapGesture(_:)))
+        self.avatarImageView.addGestureRecognizer(avatrTapGestureRecognizer)
+    }
+    
+    func addNotofication(){
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didCloseClick(notification:)),
+                                               name: Notification.Name("closeClick!"),
+                                               object: nil)
+    }
+    
     override func draw(_ rect: CGRect) {
         
         self.addSubview(avatarImageView)
@@ -80,6 +93,8 @@ class ProfileHeaderView: UIView {
         self.addSubview(statusTextField)
         self.addSubview(setStatusButton)
         self.addTargets()
+        self.addGestures()
+        self.addNotofication()
         
         NSLayoutConstraint.activate([
             
@@ -118,5 +133,13 @@ class ProfileHeaderView: UIView {
         statusLabel.textColor = .black
         statusTextField.resignFirstResponder()
         statusTextField.text = ""
+    }
+    
+    @objc func avatarTapGesture(_ gestureReconizer: UITapGestureRecognizer) {
+        NotificationCenter.default.post(name: Notification.Name("avatarClick!"), object: nil)
+    }
+    
+    @objc func didCloseClick(notification: Notification) {
+        avatarImageView.isHidden = false
     }
 }
