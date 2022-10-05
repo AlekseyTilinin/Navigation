@@ -106,11 +106,13 @@ class LogInViewController: UIViewController {
     
     private func addTargets() {
         logInButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        logInButton.alpha = logInButton.isEnabled ? 1 : 0.8
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if logInButton.isHighlighted || logInButton.isSelected || !logInButton.isEnabled { logInButton.alpha = 0.8 }
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didShowKeyboard(_:)),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -191,7 +193,6 @@ class LogInViewController: UIViewController {
     @objc func buttonPressed() {
         let profileViewController = ProfileViewController()
         navigationController?.pushViewController(profileViewController, animated: true)
-        logInButton.alpha = logInButton.isHighlighted || logInButton.isSelected ? 0.8 : 1
     }
 }
 
