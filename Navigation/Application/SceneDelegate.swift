@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         
         firstTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
-        secondTabNavigationControoller = UINavigationController.init(rootViewController: ProfileViewController())
+        secondTabNavigationControoller = UINavigationController.init(rootViewController: LogInViewController())
         
         tabBarController.viewControllers = [firstTabNavigationController, secondTabNavigationControoller]
         

@@ -10,7 +10,7 @@ class ProfileHeaderView: UIView {
     var statusText: String = ""
     
     private let avatarImageView: UIImageView = {
-      let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "SurprisedCat")
         imageView.layer.cornerRadius = 75
         imageView.layer.borderWidth = 3
@@ -21,7 +21,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private let fullNameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Surprised Cat"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
@@ -39,7 +39,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private let statusTextField: UITextField = {
-      let textField = UITextField()
+        let textField = UITextField()
         textField.backgroundColor = .white
         textField.placeholder = "Enter status"
         textField.setPaddingPoints(10)
@@ -54,7 +54,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private let setStatusButton: UIButton = {
-      let button = UIButton()
+        let button = UIButton()
         button.backgroundColor = .blue
         button.setTitle("Set status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -82,12 +82,12 @@ class ProfileHeaderView: UIView {
         self.addTargets()
         
         NSLayoutConstraint.activate([
-
+            
             avatarImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             avatarImageView.widthAnchor.constraint(equalToConstant: 150),
             avatarImageView.heightAnchor.constraint(equalToConstant: 150),
-
+            
             fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27),
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
             fullNameLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -98,14 +98,14 @@ class ProfileHeaderView: UIView {
             
             statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor,constant: -34),
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 15),
-            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
+            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
             
             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 19),
             setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50)
-
+            
         ])
     }
     
@@ -118,13 +118,5 @@ class ProfileHeaderView: UIView {
         statusLabel.textColor = .black
         statusTextField.resignFirstResponder()
         statusTextField.text = ""
-    }
-}
-
-extension UITextField {
-    func setPaddingPoints(_ amount: CGFloat){
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-        self.leftView = paddingView
-        self.leftViewMode = .always
     }
 }

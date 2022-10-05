@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B2AE6B928EC415A003A74BD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6B828EC415A003A74BD /* Extensions.swift */; };
+		5B2AE6BB28EC4197003A74BD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6BA28EC4197003A74BD /* PostTableViewCell.swift */; };
+		5B2AE6BD28EC4203003A74BD /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6BC28EC4203003A74BD /* LogInViewController.swift */; };
+		5B2AE6BF28EC4817003A74BD /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6BE28EC4817003A74BD /* PhotosTableViewCell.swift */; };
+		5B2AE6C128EC726F003A74BD /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6C028EC726F003A74BD /* PhotosViewController.swift */; };
+		5B2AE6C328EC72C1003A74BD /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6C228EC72C1003A74BD /* PhotosCollectionViewCell.swift */; };
+		5B2AE6C528EC8C8E003A74BD /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6C428EC8C8E003A74BD /* PhotoModel.swift */; };
 		5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */; };
 		5BCED6A728BF1A93006049FF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A628BF1A93006049FF /* Post.swift */; };
 		5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A828C0384F006049FF /* InfoViewController.swift */; };
@@ -21,6 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B2AE6B828EC415A003A74BD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5B2AE6BA28EC4197003A74BD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		5B2AE6BC28EC4203003A74BD /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		5B2AE6BE28EC4817003A74BD /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		5B2AE6C028EC726F003A74BD /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		5B2AE6C228EC72C1003A74BD /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		5B2AE6C428EC8C8E003A74BD /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5BCED6A628BF1A93006049FF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		5BCED6A828C0384F006049FF /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +66,7 @@
 			children = (
 				5BEBBE3428BEE9820079FC73 /* PostViewController.swift */,
 				5BCED6A628BF1A93006049FF /* Post.swift */,
+				5B2AE6BA28EC4197003A74BD /* PostTableViewCell.swift */,
 			);
 			path = PostModule;
 			sourceTree = "<group>";
@@ -81,9 +96,14 @@
 				5BCED6A528BF1A33006049FF /* PostModule */,
 				5BEBBE1728BDFD0C0079FC73 /* ViewController.swift */,
 				5BCED6A828C0384F006049FF /* InfoViewController.swift */,
+				5B2AE6B828EC415A003A74BD /* Extensions.swift */,
 				5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */,
 				5BEBBE1E28BDFD0D0079FC73 /* LaunchScreen.storyboard */,
 				5BEBBE2728BE09B10079FC73 /* Info.plist */,
+				5B2AE6BE28EC4817003A74BD /* PhotosTableViewCell.swift */,
+				5B2AE6C028EC726F003A74BD /* PhotosViewController.swift */,
+				5B2AE6C228EC72C1003A74BD /* PhotosCollectionViewCell.swift */,
+				5B2AE6C428EC8C8E003A74BD /* PhotoModel.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -108,9 +128,9 @@
 		5BEBBE2F28BEE5FD0079FC73 /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
-				5BBAE5AF28C96B6F005C48D8 /* ProfileHeaderView.swift */,
 				5BEBBE2B28BECA750079FC73 /* ProfileViewController.swift */,
 				5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */,
+				5B2AE6BC28EC4203003A74BD /* LogInViewController.swift */,
 			);
 			path = ProfileModule;
 			sourceTree = "<group>";
@@ -185,13 +205,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B2AE6C528EC8C8E003A74BD /* PhotoModel.swift in Sources */,
+				5B2AE6BB28EC4197003A74BD /* PostTableViewCell.swift in Sources */,
 				5BEBBE3528BEE9820079FC73 /* PostViewController.swift in Sources */,
 				5BEBBE2A28BEC9F80079FC73 /* FeedViewController.swift in Sources */,
 				5BCED6A728BF1A93006049FF /* Post.swift in Sources */,
 				5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */,
 				5BEBBE1828BDFD0C0079FC73 /* ViewController.swift in Sources */,
+				5B2AE6B928EC415A003A74BD /* Extensions.swift in Sources */,
 				5BEBBE2C28BECA750079FC73 /* ProfileViewController.swift in Sources */,
+				5B2AE6BD28EC4203003A74BD /* LogInViewController.swift in Sources */,
+				5B2AE6BF28EC4817003A74BD /* PhotosTableViewCell.swift in Sources */,
 				5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */,
+				5B2AE6C128EC726F003A74BD /* PhotosViewController.swift in Sources */,
+				5B2AE6C328EC72C1003A74BD /* PhotosCollectionViewCell.swift in Sources */,
 				5BEBBE1428BDFD0C0079FC73 /* AppDelegate.swift in Sources */,
 				5BEBBE1628BDFD0C0079FC73 /* SceneDelegate.swift in Sources */,
 			);

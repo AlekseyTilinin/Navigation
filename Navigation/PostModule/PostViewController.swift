@@ -9,8 +9,6 @@ import UIKit
 
 class PostViewController: UIViewController {
         
-        var dataSource = Post(title: "Post")
-        
         private let titleLabel: UILabel = {
             let label = UILabel()
             label.textColor = .black
@@ -29,7 +27,6 @@ class PostViewController: UIViewController {
         func setupUI() {
             
             setupConstraints()
-            titleLabel.text = dataSource.title
             view.backgroundColor = .magenta
         }
         
