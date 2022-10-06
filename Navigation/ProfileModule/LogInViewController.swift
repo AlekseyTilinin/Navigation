@@ -81,22 +81,8 @@ class LogInViewController: UIViewController {
         self.view.backgroundColor = .white
         self.setupGestures()
         self.addTargets()
-        self.view.addSubview(self.scrollView)
-        self.scrollView.addSubview(self.logoImageView)
-        self.scrollView.addSubview(self.stackView)
-        self.stackView.addArrangedSubview(self.logInTextField)
-        self.stackView.addArrangedSubview(self.passwordTextField)
-        self.scrollView.addSubview(self.logInButton)
-        let scrollViewConstraints = self.scrollViewConstraints()
-        let logoImageViewConstraints = self.logoImageViewConstraints()
-        let stackViewConstraints = self.stackViewConstraints()
-        let logInButtonConstraints = self.logInButtonConstraints()
-        NSLayoutConstraint.activate(
-            scrollViewConstraints +
-            logoImageViewConstraints +
-            stackViewConstraints +
-            logInButtonConstraints
-        )
+        self.addViews()
+        self.addConstraints()
     }
     
     private func setupGestures() {
@@ -106,6 +92,40 @@ class LogInViewController: UIViewController {
     
     private func addTargets() {
         logInButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+    }
+    
+    private func addViews() {
+        self.view.addSubview(self.scrollView)
+        self.scrollView.addSubview(self.logoImageView)
+        self.scrollView.addSubview(self.stackView)
+        self.stackView.addArrangedSubview(self.logInTextField)
+        self.stackView.addArrangedSubview(self.passwordTextField)
+        self.scrollView.addSubview(self.logInButton)
+    }
+    
+    private func addConstraints() {
+        NSLayoutConstraint.activate([
+            
+            self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            
+            self.logoImageView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 120),
+            self.logoImageView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
+            self.logoImageView.widthAnchor.constraint(equalToConstant: 100),
+            self.logoImageView.heightAnchor.constraint(equalToConstant: 100),
+            
+            self.stackView.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: 120),
+            self.stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            self.stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            self.stackView.heightAnchor.constraint(equalToConstant: 100),
+            
+            self.logInButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16),
+            self.logInButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            self.logInButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            self.logInButton.heightAnchor.constraint(equalToConstant: 50),
+        ])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,50 +141,6 @@ class LogInViewController: UIViewController {
                                                selector: #selector(self.didHideKeyboard(_:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
-    }
-    
-    private func scrollViewConstraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor)
-        let leadingAnchor = self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
-        let trailingAnchor = self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        let bottomAnchor = self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        
-        return [
-            topAnchor, leadingAnchor, trailingAnchor, bottomAnchor
-        ]
-    }
-    
-    private func logoImageViewConstraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.logoImageView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 120)
-        let centerXAnchor = self.logoImageView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor)
-        let widthAnchor = self.logoImageView.widthAnchor.constraint(equalToConstant: 100)
-        let heightAnchor = self.logoImageView.heightAnchor.constraint(equalToConstant: 100)
-        
-        return [
-            topAnchor, centerXAnchor, widthAnchor, heightAnchor
-        ]
-    }
-    
-    private func stackViewConstraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.stackView.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: 120)
-        let leadingAnchor = self.stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-        let trailingAnchor = self.stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        let heightAnchor = self.stackView.heightAnchor.constraint(equalToConstant: 100)
-        
-        return [
-            topAnchor, leadingAnchor, trailingAnchor, heightAnchor
-        ]
-    }
-    
-    private func logInButtonConstraints() -> [NSLayoutConstraint] {
-        let topAnchor = self.logInButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16)
-        let leadingAnchor = self.logInButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16)
-        let trailingAnchor = self.logInButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
-        let heightAnchor = self.logInButton.heightAnchor.constraint(equalToConstant: 50)
-        
-        return [
-            topAnchor, leadingAnchor, trailingAnchor, heightAnchor
-        ]
     }
     
     @objc private func didShowKeyboard(_ notification: Notification) {
@@ -195,5 +171,3 @@ class LogInViewController: UIViewController {
         navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
-
-
