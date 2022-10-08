@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5B01B44728E1F02700AD65C0 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B01B44628E1F02700AD65C0 /* LogInViewController.swift */; };
-		5B01EDFF28E2FF5100784E49 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B01EDFE28E2FF5100784E49 /* Extensions.swift */; };
+		5B01EDFF28E2FF5100784E49 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B01EDFE28E2FF5100784E49 /* UITextFieldExtension.swift */; };
 		5B15434528E44705008FD12D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B15434428E44705008FD12D /* PostTableViewCell.swift */; };
+		5B18CF1528EEE05600C99985 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18CF1428EEE05600C99985 /* PhotoModel.swift */; };
+		5B18CF1728EEE06900C99985 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18CF1628EEE06900C99985 /* PhotosCollectionViewCell.swift */; };
+		5B18CF1928EEE07D00C99985 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18CF1828EEE07D00C99985 /* PhotosTableViewCell.swift */; };
+		5B18CF1B28EEE09000C99985 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18CF1A28EEE09000C99985 /* PhotosViewController.swift */; };
 		5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */; };
 		5BCED6A728BF1A93006049FF /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A628BF1A93006049FF /* PostModel.swift */; };
 		5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A828C0384F006049FF /* InfoViewController.swift */; };
@@ -25,8 +29,12 @@
 
 /* Begin PBXFileReference section */
 		5B01B44628E1F02700AD65C0 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		5B01EDFE28E2FF5100784E49 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5B01EDFE28E2FF5100784E49 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		5B15434428E44705008FD12D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		5B18CF1428EEE05600C99985 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		5B18CF1628EEE06900C99985 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		5B18CF1828EEE07D00C99985 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		5B18CF1A28EEE09000C99985 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5BCED6A628BF1A93006049FF /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		5BCED6A828C0384F006049FF /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +61,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B18CF1C28EEE9F200C99985 /* PhotosModule */ = {
+			isa = PBXGroup;
+			children = (
+				5B18CF1428EEE05600C99985 /* PhotoModel.swift */,
+				5B18CF1628EEE06900C99985 /* PhotosCollectionViewCell.swift */,
+				5B18CF1828EEE07D00C99985 /* PhotosTableViewCell.swift */,
+				5B18CF1A28EEE09000C99985 /* PhotosViewController.swift */,
+			);
+			path = PhotosModule;
+			sourceTree = "<group>";
+		};
 		5BCED6A528BF1A33006049FF /* PostModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,12 +102,13 @@
 			isa = PBXGroup;
 			children = (
 				5BEBBE2D28BEE5A20079FC73 /* Application */,
-				5BEBBE2E28BEE5CF0079FC73 /* FeedModule */,
 				5BEBBE2F28BEE5FD0079FC73 /* ProfileModule */,
+				5B18CF1C28EEE9F200C99985 /* PhotosModule */,
+				5BEBBE2E28BEE5CF0079FC73 /* FeedModule */,
 				5BCED6A528BF1A33006049FF /* PostModule */,
 				5BEBBE1728BDFD0C0079FC73 /* ViewController.swift */,
 				5BCED6A828C0384F006049FF /* InfoViewController.swift */,
-				5B01EDFE28E2FF5100784E49 /* Extensions.swift */,
+				5B01EDFE28E2FF5100784E49 /* UITextFieldExtension.swift */,
 				5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */,
 				5BEBBE1E28BDFD0D0079FC73 /* LaunchScreen.storyboard */,
 				5BEBBE2728BE09B10079FC73 /* Info.plist */,
@@ -193,7 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B18CF1928EEE07D00C99985 /* PhotosTableViewCell.swift in Sources */,
+				5B18CF1B28EEE09000C99985 /* PhotosViewController.swift in Sources */,
 				5BEBBE3528BEE9820079FC73 /* PostViewController.swift in Sources */,
+				5B18CF1728EEE06900C99985 /* PhotosCollectionViewCell.swift in Sources */,
 				5BEBBE2A28BEC9F80079FC73 /* FeedViewController.swift in Sources */,
 				5BCED6A728BF1A93006049FF /* PostModel.swift in Sources */,
 				5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */,
@@ -203,7 +226,8 @@
 				5B15434528E44705008FD12D /* PostTableViewCell.swift in Sources */,
 				5BEBBE1428BDFD0C0079FC73 /* AppDelegate.swift in Sources */,
 				5B01B44728E1F02700AD65C0 /* LogInViewController.swift in Sources */,
-				5B01EDFF28E2FF5100784E49 /* Extensions.swift in Sources */,
+				5B01EDFF28E2FF5100784E49 /* UITextFieldExtension.swift in Sources */,
+				5B18CF1528EEE05600C99985 /* PhotoModel.swift in Sources */,
 				5BEBBE1628BDFD0C0079FC73 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
