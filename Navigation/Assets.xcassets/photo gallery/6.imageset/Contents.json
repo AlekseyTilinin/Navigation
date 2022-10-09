@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "1651051213_8-vsegda-pomnim-com-p-morskie-svinki-foto-8.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
