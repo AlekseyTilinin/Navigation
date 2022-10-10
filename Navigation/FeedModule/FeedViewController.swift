@@ -19,7 +19,7 @@ class FeedViewController: UIViewController {
     
     private let showSomePostButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Show some post", for: .normal)
+        button.setTitle("Show post feed", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = .purple
         button.layer.cornerRadius = 5
@@ -29,7 +29,7 @@ class FeedViewController: UIViewController {
     
     private let showNewPostButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Show new post", for: .normal)
+        button.setTitle("Show info", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = .purple
         button.layer.cornerRadius = 5
@@ -50,7 +50,7 @@ class FeedViewController: UIViewController {
     
     func addTargets() {
         showSomePostButton.addTarget(self, action: #selector(showPostViewController), for: .touchUpInside)
-        showNewPostButton.addTarget(self, action: #selector(showPostViewController), for: .touchUpInside)
+        showNewPostButton.addTarget(self, action: #selector(showInfoViewController), for: .touchUpInside)
     }
     
     func setupConstraints() {
@@ -85,6 +85,11 @@ class FeedViewController: UIViewController {
     @objc func showPostViewController() {
         let postViewController = PostViewController()
         navigationController?.pushViewController(postViewController, animated: true)
+    }
+    
+    @objc func showInfoViewController() {
+        let infoViewController = InfoViewController()
+        navigationController?.present(infoViewController, animated: true)
     }
     
 }

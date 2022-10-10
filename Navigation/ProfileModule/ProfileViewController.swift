@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
     
@@ -52,7 +53,12 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
+        
+#if DEBUG
+        view.backgroundColor = .systemYellow
+#else
+        view.backgroundColor = .systemBackground
+#endif
         
         addViews()
         addConstraints()
@@ -144,7 +150,7 @@ class ProfileViewController: UIViewController {
             self.hiddenAvatar.isUserInteractionEnabled = true
         } completion: { _ in
             NotificationCenter.default.post(name: Notification.Name("closeClik!"), object: nil)
-                self.hiddenAvatar.isHidden = true
+            self.hiddenAvatar.isHidden = true
         }
     }
     
@@ -181,7 +187,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if section == 1 {
-          return  publications.count
+            return  publications.count
         }
         
         return 0
@@ -193,7 +199,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             navigationController?.pushViewController(photosViewController, animated: false)
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
@@ -219,7 +225,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             return tableView.dequeueReusableCell(withIdentifier: "DefaultTableCellIndentifier", for: indexPath)
         }
     }
-        
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 250
