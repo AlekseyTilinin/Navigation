@@ -4,6 +4,7 @@
 //  Created by Aleksey on 13.09.2022.
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView {
     
@@ -17,7 +18,6 @@ class ProfileHeaderView: UIView {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -26,7 +26,6 @@ class ProfileHeaderView: UIView {
         label.text = "Surprised Cat"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -35,7 +34,6 @@ class ProfileHeaderView: UIView {
         label.text = "Waiting for something..."
         label.font = label.font.withSize(14)
         label.textColor = .gray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -50,7 +48,6 @@ class ProfileHeaderView: UIView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.font = UIFont.boldSystemFont(ofSize: 15)
         textField.textColor = .black
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -64,7 +61,6 @@ class ProfileHeaderView: UIView {
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -97,33 +93,38 @@ class ProfileHeaderView: UIView {
         self.addGestures()
         self.addNotofication()
         
-        NSLayoutConstraint.activate([
-            
-            avatarImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 150),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 150),
-            
-            fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 27),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
-            fullNameLabel.heightAnchor.constraint(equalToConstant: 20),
-            
-            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -10),
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
-            statusLabel.heightAnchor.constraint(equalToConstant: 15),
-            
-            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor,constant: -34),
-            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 15),
-            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            
-            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 19),
-            setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            setStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 50)
-            
-        ])
+        avatarImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.width.height.equalTo(150)
+        }
+        
+        fullNameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(27)
+            make.leading.equalTo(avatarImageView.snp.trailing).inset(-20)
+            make.height.equalTo(20)
+        }
+        
+        statusLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(statusTextField.snp.top).inset(-10)
+            make.leading.equalTo(avatarImageView.snp.trailing).inset(-20)
+            make.height.equalTo(15)
+        }
+        
+        statusTextField.snp.makeConstraints { make in
+            make.bottom.equalTo(setStatusButton.snp.top).inset(-34)
+            make.leading.equalTo(avatarImageView.snp.trailing).inset(-15)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(40)
+        }
+        
+        setStatusButton.snp.makeConstraints { make in
+            make.top.equalTo(avatarImageView.snp.bottom).inset(-19)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(16)
+            make.height.equalTo(50)
+        }
     }
     
     @objc func statusTextChanged(_ textField: UITextField) {
