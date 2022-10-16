@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class ProfileViewController: UIViewController {
     
@@ -210,7 +211,29 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                 return cell
             }
             
-            let post = publications[indexPath.row]
+            var post = publications[indexPath.row]
+            
+            let imageFilter = ImageProcessor()
+            
+            if let sourceImage = post.image {
+                            if indexPath.row == 0 {
+                                imageFilter.processImage(sourceImage: sourceImage, filter: .gaussianBlur(radius: 10)) {
+                                    filteredImage in post.image = filteredImage
+                                }
+                            } else if  indexPath.row == 1 {
+                                imageFilter.processImage(sourceImage: sourceImage, filter: .crystallize(radius: 10)) {
+                                    filteredImage in post.image = filteredImage
+                                }
+                            } else if  indexPath.row == 2 {
+                                imageFilter.processImage(sourceImage: sourceImage, filter: .transfer) {
+                                    filteredImage in post.image = filteredImage
+                                }
+                            } else if  indexPath.row == 3 {
+                                imageFilter.processImage(sourceImage: sourceImage, filter: .bloom(intensity: 20)) {
+                                    filteredImage in post.image = filteredImage
+                                }
+                }
+            }
             
             let postViewModel = PostTableViewCell.Post(
                 author: post.author,
