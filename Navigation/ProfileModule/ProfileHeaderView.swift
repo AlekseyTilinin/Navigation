@@ -68,6 +68,13 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
+    func setup(user : User){
+        
+        avatarImageView.image = user.avatar
+        fullNameLabel.text = user.fullName
+        statusLabel.text = user.status
+       }
+    
     func addTargets() {
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
@@ -132,7 +139,7 @@ class ProfileHeaderView: UIView {
     
     @objc func buttonPressed() {
         statusLabel.text = statusText
-        statusLabel.textColor = .black
+        statusLabel.textColor = .gray
         statusTextField.resignFirstResponder()
         statusTextField.text = ""
     }

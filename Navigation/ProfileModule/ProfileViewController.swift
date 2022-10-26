@@ -10,6 +10,8 @@ import StorageService
 
 class ProfileViewController: UIViewController {
     
+    var user: User = User(logIn: "", fullName: "", avatar: UIImage(), status: "")
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
@@ -171,7 +173,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            return ProfileHeaderView()
+            let userProfile = ProfileHeaderView()
+            userProfile.setup(user: user)
+            return userProfile
         }
         return nil
     }

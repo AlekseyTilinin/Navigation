@@ -76,6 +76,8 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    let alertMessege = UIAlertController(title: "Error", message: "Введены некоректные данные", preferredStyle: .alert)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -166,8 +168,24 @@ class LogInViewController: UIViewController {
         self.view.endEditing(true)
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
+    
     @objc func buttonPressed() {
-        let profileViewController = ProfileViewController()
-        navigationController?.pushViewController(profileViewController, animated: true)
+        
+        let enteredLogIn = logInTextField.text
+        
+#if DEBUG
+        let userLogIn = TestUserService(user: User(logIn: "test", fullName: "Test Test", avatar: UIImage(), status: "Test"))
+#else
+        let userLogIn = CurrentUserService(user: User(logIn: "surprised", fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
+#endif
+        
+        if userLogIn.authorization(logIn: enteredLogIn ?? "") != nil {
+            let profileViewController = ProfileViewController()
+            profileViewController.user = userLogIn.user
+            navigationController?.pushViewController(profileViewController, animated: true)
+        } else {
+            self.present(alertMessege, animated: true, completion: nil)
+            alertMessege.addAction(UIAlertAction(title: "OK", style: .destructive))
+        }
     }
 }
