@@ -16,6 +16,7 @@
 		5B18CF1B28EEE09000C99985 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18CF1A28EEE09000C99985 /* PhotosViewController.swift */; };
 		5B6151B228F392E6009D8E55 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B6151B128F392E6009D8E55 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B6151BB28F3938F009D8E55 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A628BF1A93006049FF /* PostModel.swift */; };
+		5B64FB0C2908AB3000038817 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B64FB0B2908AB3000038817 /* UserModel.swift */; };
 		5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */; };
 		5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A828C0384F006049FF /* InfoViewController.swift */; };
 		5BEBBE1428BDFD0C0079FC73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1328BDFD0C0079FC73 /* AppDelegate.swift */; };
@@ -60,8 +61,9 @@
 		5B18CF1828EEE07D00C99985 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		5B18CF1A28EEE09000C99985 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		5B6151B128F392E6009D8E55 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
-		5B6151B728F392E6009D8E55 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Navigation.app; path = "/Users/aleksey/Desktop/Home Work/iosui/Navigation/build/Debug-iphoneos/Navigation.app"; sourceTree = "<absolute>"; };
-		5B6151BC28F39421009D8E55 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = StorageService.framework; path = "/Users/aleksey/Desktop/Home Work/iosui/Navigation/build/Debug-iphoneos/StorageService.framework"; sourceTree = "<absolute>"; };
+		5B64FB092908AAA900038817 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B64FB0A2908AAA900038817 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B64FB0B2908AB3000038817 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5BCED6A628BF1A93006049FF /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		5BCED6A828C0384F006049FF /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,8 @@
 			children = (
 				5BEBBE1228BDFD0B0079FC73 /* Navigation */,
 				5B6151B028F392E6009D8E55 /* StorageService */,
+				5B64FB092908AAA900038817 /* Navigation.app */,
+				5B64FB0A2908AAA900038817 /* StorageService.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,6 +173,7 @@
 		5BEBBE2F28BEE5FD0079FC73 /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
+				5B64FB0B2908AB3000038817 /* UserModel.swift */,
 				5BEBBE2B28BECA750079FC73 /* ProfileViewController.swift */,
 				5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */,
 				5B01B44628E1F02700AD65C0 /* LogInViewController.swift */,
@@ -205,7 +210,7 @@
 			);
 			name = StorageService;
 			productName = StorageService;
-			productReference = 5B6151BC28F39421009D8E55 /* StorageService.framework */;
+			productReference = 5B64FB0A2908AAA900038817 /* StorageService.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		5BEBBE0F28BDFD0B0079FC73 /* Navigation */ = {
@@ -224,7 +229,7 @@
 			);
 			name = Navigation;
 			productName = Navigation;
-			productReference = 5B6151B728F392E6009D8E55 /* Navigation.app */;
+			productReference = 5B64FB092908AAA900038817 /* Navigation.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -306,6 +311,7 @@
 				5BEBBE2C28BECA750079FC73 /* ProfileViewController.swift in Sources */,
 				5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */,
 				5B15434528E44705008FD12D /* PostTableViewCell.swift in Sources */,
+				5B64FB0C2908AB3000038817 /* UserModel.swift in Sources */,
 				5BEBBE1428BDFD0C0079FC73 /* AppDelegate.swift in Sources */,
 				5B01B44728E1F02700AD65C0 /* LogInViewController.swift in Sources */,
 				5B01EDFF28E2FF5100784E49 /* UITextFieldExtension.swift in Sources */,
@@ -457,6 +463,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
