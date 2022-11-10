@@ -17,6 +17,7 @@
 		5B6151B228F392E6009D8E55 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B6151B128F392E6009D8E55 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B6151BB28F3938F009D8E55 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A628BF1A93006049FF /* PostModel.swift */; };
 		5B64FB0C2908AB3000038817 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B64FB0B2908AB3000038817 /* UserModel.swift */; };
+		5B7BC4CA2914B0EE0039043E /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7BC4C92914B0EE0039043E /* Checker.swift */; };
 		5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */; };
 		5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A828C0384F006049FF /* InfoViewController.swift */; };
 		5BEBBE1428BDFD0C0079FC73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1328BDFD0C0079FC73 /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		5B64FB092908AAA900038817 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B64FB0A2908AAA900038817 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B64FB0B2908AB3000038817 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		5B7BC4C92914B0EE0039043E /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5BCED6A628BF1A93006049FF /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		5BCED6A828C0384F006049FF /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				5BEBBE1728BDFD0C0079FC73 /* ViewController.swift */,
 				5BCED6A828C0384F006049FF /* InfoViewController.swift */,
 				5B01EDFE28E2FF5100784E49 /* UITextFieldExtension.swift */,
+				5B7BC4C92914B0EE0039043E /* Checker.swift */,
 				5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */,
 				5BEBBE1E28BDFD0D0079FC73 /* LaunchScreen.storyboard */,
 				5BEBBE2728BE09B10079FC73 /* Info.plist */,
@@ -309,6 +312,7 @@
 				5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */,
 				5BEBBE1828BDFD0C0079FC73 /* ViewController.swift in Sources */,
 				5BEBBE2C28BECA750079FC73 /* ProfileViewController.swift in Sources */,
+				5B7BC4CA2914B0EE0039043E /* Checker.swift in Sources */,
 				5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */,
 				5B15434528E44705008FD12D /* PostTableViewCell.swift in Sources */,
 				5B64FB0C2908AB3000038817 /* UserModel.swift in Sources */,

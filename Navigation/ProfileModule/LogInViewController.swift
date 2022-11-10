@@ -9,6 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    var logInDelegate: LogInViewControllerDelegate?
+    
     private lazy var logoImageView: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "logo")
@@ -85,6 +87,8 @@ class LogInViewController: UIViewController {
         self.addTargets()
         self.addViews()
         self.addConstraints()
+        
+        alertMessege.addAction(UIAlertAction(title: "OK", style: .destructive))
     }
     
     private func setupGestures() {
@@ -172,20 +176,20 @@ class LogInViewController: UIViewController {
     @objc func buttonPressed() {
         
         let enteredLogIn = logInTextField.text
+        let enteredPassword = passwordTextField.text
         
 #if DEBUG
-        let userLogIn = TestUserService(user: User(logIn: "test", fullName: "Test Test", avatar: UIImage(), status: "Test"))
+        let userLogIn = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
 #else
-        let userLogIn = CurrentUserService(user: User(logIn: "surprised", fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
+        let userLogIn = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
 #endif
         
-        if userLogIn.authorization(logIn: enteredLogIn ?? "") != nil {
+        if logInDelegate?.check(self, logIn: enteredLogIn ?? "", password: enteredPassword ?? "") == true {
             let profileViewController = ProfileViewController()
             profileViewController.user = userLogIn.user
             navigationController?.pushViewController(profileViewController, animated: true)
         } else {
             self.present(alertMessege, animated: true, completion: nil)
-            alertMessege.addAction(UIAlertAction(title: "OK", style: .destructive))
         }
     }
 }
