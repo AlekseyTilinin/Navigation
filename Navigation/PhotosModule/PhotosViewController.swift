@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
+    
+    var itemInSection: Int = 0
+    var imageMassive: [UIImage] = []
+    var imagePublisher = ImagePublisherFacade()
     
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -37,6 +42,17 @@ class PhotosViewController: UIViewController {
         
         addViews()
         addConstraints()
+        
+        imagePublisher.subscribe(self)
+        imagePublisher.addImagesWithTimer(time: 0.5, repeat: 15)
+    }
+    
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        if parent == nil {
+            imagePublisher.removeSubscription(for: self)
+            imagePublisher.rechargeImageLibrary()
+        }
     }
     
     func addViews() {
@@ -56,7 +72,7 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return itemInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -65,12 +81,21 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
             return cell
         }
         
-        cell.setupImage(whith: "\(itemData[indexPath.row])")
+        cell.setupWithImage(with: imageMassive[indexPath.row])
                 
                 return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: itemSizeInCollection, height: itemSizeInCollection)
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+
+    func receive(images: [UIImage]) {
+        imageMassive = images
+        itemInSection = images.count
+        photoGalleryCollectionView.reloadData()
     }
 }
