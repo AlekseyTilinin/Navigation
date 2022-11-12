@@ -47,13 +47,10 @@ class PhotosViewController: UIViewController {
         imagePublisher.addImagesWithTimer(time: 0.5, repeat: 15)
     }
     
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        if parent == nil {
-            imagePublisher.removeSubscription(for: self)
-            imagePublisher.rechargeImageLibrary()
-        }
-    }
+    override func viewDidDisappear(_ animated: Bool) {
+          imagePublisher.removeSubscription(for: self)
+          imagePublisher.rechargeImageLibrary()
+      }
     
     func addViews() {
         view.addSubview(photoGalleryCollectionView)
