@@ -91,7 +91,7 @@ extension PhotosTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
             return cell
         }
         
-        cell.setupImage(whith: "\(itemData[indexPath.row])")
+        cell.setupWithName(with: "\(itemData[indexPath.row])")
         
         return cell
     }

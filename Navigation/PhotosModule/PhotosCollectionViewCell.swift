@@ -12,6 +12,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -25,9 +27,13 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupImage(whith name: String) {
+    func setupWithName(with name: String) {
         self.imageView.image = UIImage(named: name)
     }
+    
+    func setupWithImage(with image: UIImage){
+           self.imageView.image = image
+       }
     
     private func setupView() {
         self.addSubview(imageView)

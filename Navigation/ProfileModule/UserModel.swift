@@ -15,13 +15,12 @@ import UIKit
 
 class User {
     
-//    var logIn: String
     var fullName: String
     var avatar: UIImage
     var status: String
     
     init(fullName: String, avatar: UIImage, status: String) {
-//        self.logIn = logIn
+        
         self.fullName = fullName
         self.avatar = avatar
         self.status = status
@@ -32,13 +31,6 @@ class CurrentUserService {
     
     let user: User
     
-//    func authorization(logIn: String) -> User? {
-//        if logIn == user.logIn {
-//            return user
-//        }
-//        return nil
-//    }
-    
     init(user: User) {
         self.user = user
     }
@@ -47,13 +39,6 @@ class CurrentUserService {
 class TestUserService {
     
     let user: User
-    
-//    func authorization(logIn: String) -> User? {
-//        if logIn == user.logIn {
-//            return user
-//        }
-//        return nil
-//    }
     
     init(user: User) {
         self.user = user
