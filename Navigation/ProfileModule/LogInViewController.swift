@@ -67,16 +67,7 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    private lazy var logInButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel.png")!)
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private lazy var logInButton: CustomButton = CustomButton(title: "Log In")
     
     let alertMessege = UIAlertController(title: "Error", message: "Введены некоректные данные", preferredStyle: .alert)
     
@@ -84,20 +75,38 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.setupGestures()
-        self.addTargets()
+        self.buttonPressed()
         self.addViews()
         self.addConstraints()
         
         alertMessege.addAction(UIAlertAction(title: "OK", style: .destructive))
     }
     
+    func buttonPressed() {
+        
+        logInButton.buttonAction = { [self] in
+            let enteredLogIn = logInTextField.text
+            let enteredPassword = passwordTextField.text
+            
+#if DEBUG
+            let userLogIn = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
+#else
+            let userLogIn = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
+#endif
+            
+            if logInDelegate?.check(self, logIn: enteredLogIn ?? "", password: enteredPassword ?? "") == true {
+                let profileViewController = ProfileViewController()
+                profileViewController.user = userLogIn.user
+                navigationController?.pushViewController(profileViewController, animated: true)
+            } else {
+                self.present(alertMessege, animated: true, completion: nil)
+            }
+        }
+    }
+    
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
         self.view.addGestureRecognizer(tapGesture)
-    }
-    
-    private func addTargets() {
-        logInButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
     
     private func addViews() {
@@ -171,25 +180,5 @@ class LogInViewController: UIViewController {
     @objc private func forcedHidingKeyboard() {
         self.view.endEditing(true)
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-    }
-    
-    @objc func buttonPressed() {
-        
-        let enteredLogIn = logInTextField.text
-        let enteredPassword = passwordTextField.text
-        
-#if DEBUG
-        let userLogIn = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
-#else
-        let userLogIn = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
-#endif
-        
-        if logInDelegate?.check(self, logIn: enteredLogIn ?? "", password: enteredPassword ?? "") == true {
-            let profileViewController = ProfileViewController()
-            profileViewController.user = userLogIn.user
-            navigationController?.pushViewController(profileViewController, animated: true)
-        } else {
-            self.present(alertMessege, animated: true, completion: nil)
-        }
     }
 }
