@@ -9,6 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    var coordinator : ProfileCoordinator?
+    
     var logInDelegate: LogInViewControllerDelegate?
     
     private lazy var logoImageView: UIImageView = {
@@ -93,11 +95,8 @@ class LogInViewController: UIViewController {
 #else
             let userLogIn = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
 #endif
-            
-            if logInDelegate?.check(self, logIn: enteredLogIn ?? "", password: enteredPassword ?? "") == true {
-                let profileViewController = ProfileViewController()
-                profileViewController.user = userLogIn.user
-                navigationController?.pushViewController(profileViewController, animated: true)
+            if Checker.shared.check(logIn: enteredLogIn ?? "", password: enteredPassword ?? "") == true {
+                self.coordinator?.showProfileScreen(transitionHandler: self.navigationController!, user: userLogIn)
             } else {
                 self.present(alertMessege, animated: true, completion: nil)
             }

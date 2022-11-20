@@ -9,6 +9,8 @@ import UIKit
 import StorageService
 
 class PostViewController: UIViewController {
+    
+    var coordinator : FeedCoordinator?
         
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -16,7 +18,7 @@ class PostViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
@@ -31,19 +33,23 @@ class PostViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             setupConstraints()
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(showInfoViewController))
-    
+            view.backgroundColor = .secondarySystemBackground
+            
+            self.navigationController?.navigationBar.isHidden = false
+            
+            let modal = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showInfoViewController))
+            navigationItem.rightBarButtonItems = [modal]
         }
         
         func setupConstraints() {
             view.addSubview(titleLabel)
             view.addSubview(tableView)
-            
+
             NSLayoutConstraint.activate([
-           
+
                 titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
                 titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                
+
                 self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
                 self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
                 self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -52,30 +58,29 @@ class PostViewController: UIViewController {
         }
     
     @objc func showInfoViewController() {
-        let infoViewController = InfoViewController()
-        navigationController?.present(infoViewController, animated: true)
+        coordinator?.showInfoScreen(sender: self)
     }
 }
 
 extension PostViewController: UITableViewDataSource, UITableViewDelegate {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
           return  publications.count
         }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableCellIndentifier", for: indexPath) as? PostTableViewCell else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultTableCellIndentifier", for: indexPath)
             return cell
         }
-        
+
         let post = publications[indexPath.row]
-        
+
         let postViewModel = PostTableViewCell.Post(
             author: post.author,
             image: post.image,

@@ -10,37 +10,23 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-    var feedTabNavigationController : UINavigationController!
-    var logInTabNavigationController : UINavigationController!
+    var coordinator: AppCoordinator?
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let tabBarController = UITabBarController()
+        let window = UIWindow(windowScene: windowScene)
+        let transitionHandler = UITabBarController()
         
-        feedTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
+        coordinator = AppCoordinator.init(transitionHandler: transitionHandler)
+        coordinator?.start()
         
-        let logInVC = LogInViewController()
-//        logInVC.logInDelegate = LogInInspector()  // для задачи №1
-        logInVC.logInDelegate = MyLogInFactory().makeLogInInspector()
-        logInTabNavigationController = UINavigationController.init(rootViewController: logInVC)
-        
-        tabBarController.viewControllers = [feedTabNavigationController, logInTabNavigationController]
-        
-        let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "newspaper"), tag: 0)
-        let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
-        
-        feedTabNavigationController.tabBarItem = item1
-        logInTabNavigationController.tabBarItem = item2
-
-        UITabBar.appearance().tintColor = .purple
+        UITabBar.appearance().tintColor = .systemBlue
         UITabBar.appearance().backgroundColor = .systemBackground
         
-        let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = tabBarController
+        window.rootViewController = transitionHandler
         window.makeKeyAndVisible()
         self.window = window
     }

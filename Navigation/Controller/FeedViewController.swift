@@ -9,6 +9,8 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
+    var coordinator : FeedCoordinator?
+    
     private var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -18,8 +20,6 @@ class FeedViewController: UIViewController {
     }()
     
     private lazy var showSomePostButton: CustomButton = CustomButton(title: "Show post feed")
-    
-    private lazy var showNewPostButton: CustomButton = CustomButton(title: "Show info")
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
@@ -50,13 +50,7 @@ class FeedViewController: UIViewController {
     func buttonsActions() {
         
         showSomePostButton.buttonAction = {
-            let postViewController = PostViewController()
-            self.navigationController?.pushViewController(postViewController, animated: true)
-        }
-        
-        showNewPostButton.buttonAction = {
-            let infoViewController = InfoViewController()
-            self.navigationController?.present(infoViewController, animated: true)
+            self.coordinator?.showPostScreen(navigationController: self.navigationController!)
         }
         
         checkGuessButton.buttonAction = { [self] in
@@ -74,7 +68,6 @@ class FeedViewController: UIViewController {
     func setupConstraints() {
         view.addSubview(stackView)
         stackView.addArrangedSubview(showSomePostButton)
-        stackView.addArrangedSubview(showNewPostButton)
         stackView.addArrangedSubview(textField)
         stackView.addArrangedSubview(checkGuessButton)
         stackView.addArrangedSubview(resultIndicator)
@@ -97,7 +90,7 @@ class FeedViewController: UIViewController {
         appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.brown]
-        navigationController?.navigationBar.tintColor = .brown
+        navigationController?.navigationBar.tintColor = .systemBlue
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance

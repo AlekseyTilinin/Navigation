@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-//protocol UserService {
-//
-//    func authorization (logIn: String) -> User?
-//}
+protocol AppUser {
+    
+    var user : User {get set}
+}
 
 class User {
     
@@ -27,18 +27,18 @@ class User {
     }
 }
 
-class CurrentUserService {
+class CurrentUserService: AppUser {
     
-    let user: User
+    var user: User
     
     init(user: User) {
         self.user = user
     }
 }
     
-class TestUserService {
+class TestUserService: AppUser {
     
-    let user: User
+    var user: User
     
     init(user: User) {
         self.user = user
