@@ -26,7 +26,7 @@ class Checker {
     private let password: String
     
     func check(logIn: String, password: String) -> Bool {
-        self.logIn == logIn && self.password == password ? true : false
+        self.logIn == logIn && self.password == password
     }
 }
 

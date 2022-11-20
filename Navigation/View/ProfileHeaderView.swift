@@ -5,7 +5,7 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
     
     var statusText: String = ""
     
@@ -51,22 +51,37 @@ class ProfileHeaderView: UIView {
         textField.font = UIFont.boldSystemFont(ofSize: 15)
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         return textField
     }()
     
-    private let setStatusButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .blue
-        button.setTitle("Set status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private let setStatusButton: CustomButton = CustomButton(title: "Set status")
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        
+        self.addGestures()
+        self.addNotofication()
+        self.buttonPressed()
+        self.addConstreints()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+    }
+    
+    func buttonPressed() {
+        setStatusButton.buttonAction = {
+            if let text = self.statusLabel.text {
+                print(text)
+            }
+            
+            if self.statusText != "" {
+                self.statusLabel.text = self.statusText
+            }
+        }
+    }
     
     func setup(user : User){
         
@@ -74,12 +89,6 @@ class ProfileHeaderView: UIView {
         fullNameLabel.text = user.fullName
         statusLabel.text = user.status
        }
-    
-    func addTargets() {
-        statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-        setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-    }
-    
     
     func addGestures() {
         let avatrTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarTapGesture(_:)))
@@ -93,16 +102,13 @@ class ProfileHeaderView: UIView {
                                                object: nil)
     }
     
-    override func draw(_ rect: CGRect) {
+    func addConstreints() {
         
         self.addSubview(avatarImageView)
         self.addSubview(fullNameLabel)
         self.addSubview(statusLabel)
         self.addSubview(statusTextField)
         self.addSubview(setStatusButton)
-        self.addTargets()
-        self.addGestures()
-        self.addNotofication()
         
         NSLayoutConstraint.activate([
             
@@ -134,14 +140,9 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = statusTextField.text!
-    }
-    
-    @objc func buttonPressed() {
-        statusLabel.text = statusText
-        statusLabel.textColor = .gray
-        statusTextField.resignFirstResponder()
-        statusTextField.text = ""
+        if let text = statusTextField.text {
+            statusText = text
+        }
     }
     
     @objc func avatarTapGesture(_ gestureReconizer: UITapGestureRecognizer) {
