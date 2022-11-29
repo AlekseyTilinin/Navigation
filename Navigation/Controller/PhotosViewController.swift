@@ -10,9 +10,7 @@ import iOSIntPackage
 
 class PhotosViewController: UIViewController {
     
-    var itemInSection: Int = 0
-    var imageMassive: [UIImage] = []
-    var imagePublisher = ImagePublisherFacade()
+    var filteredImage: [CGImage?] = []
     
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -43,14 +41,27 @@ class PhotosViewController: UIViewController {
         addViews()
         addConstraints()
         
-        imagePublisher.subscribe(self)
-        imagePublisher.addImagesWithTimer(time: 0.5, repeat: 15)
+        processImagesOnThread()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-          imagePublisher.removeSubscription(for: self)
-          imagePublisher.rechargeImageLibrary()
-      }
+    func processImagesOnThread() {
+        let timeStart = DispatchTime.now()
+        
+        ImageProcessor.init().processImagesOnThread(sourceImages: photoCollection, filter: .chrome, qos: .default) { [self] image in
+            filteredImage = image
+            for (index,item) in filteredImage.enumerated() {
+                photoCollection[index] = UIImage.init(cgImage: item!)
+            }
+        }
+        
+        let timeEnd = DispatchTime.now()
+        let timeInterval = Double(timeEnd.uptimeNanoseconds - timeStart.uptimeNanoseconds) / 1_000_000_000
+        print ("Time interval: \(timeInterval)")
+        
+        DispatchQueue.main.async {
+            self.photoGalleryCollectionView.reloadData()
+        }
+    }
     
     func addViews() {
         view.addSubview(photoGalleryCollectionView)
@@ -69,7 +80,7 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemInSection
+        return photoCollection.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,21 +89,12 @@ extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDele
             return cell
         }
         
-        cell.setupWithImage(with: imageMassive[indexPath.row])
-                
-                return cell
+        cell.setupWithIndex(with: indexPath.row)
+        
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: itemSizeInCollection, height: itemSizeInCollection)
-    }
-}
-
-extension PhotosViewController: ImageLibrarySubscriber {
-
-    func receive(images: [UIImage]) {
-        imageMassive = images
-        itemInSection = images.count
-        photoGalleryCollectionView.reloadData()
     }
 }
