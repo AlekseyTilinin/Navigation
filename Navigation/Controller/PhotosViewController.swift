@@ -47,19 +47,19 @@ class PhotosViewController: UIViewController {
     func processImagesOnThread() {
         let timeStart = DispatchTime.now()
         
-        ImageProcessor.init().processImagesOnThread(sourceImages: photoCollection, filter: .chrome, qos: .default) { [self] image in
+        ImageProcessor.init().processImagesOnThread(sourceImages: photoCollection, filter: .colorInvert, qos: .background) { [self] image in
             filteredImage = image
             for (index,item) in filteredImage.enumerated() {
                 photoCollection[index] = UIImage.init(cgImage: item!)
             }
-        }
-        
-        let timeEnd = DispatchTime.now()
-        let timeInterval = Double(timeEnd.uptimeNanoseconds - timeStart.uptimeNanoseconds) / 1_000_000_000
-        print ("Time interval: \(timeInterval)")
-        
-        DispatchQueue.main.async {
-            self.photoGalleryCollectionView.reloadData()
+            
+            DispatchQueue.main.async {
+                self.photoGalleryCollectionView.reloadData()
+            }
+
+            let timeEnd = DispatchTime.now()
+            let timeInterval = Double(timeEnd.uptimeNanoseconds - timeStart.uptimeNanoseconds) / 1_000_000_000
+            print ("Time interval: \(timeInterval) seconds")
         }
     }
     
