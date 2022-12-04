@@ -9,7 +9,7 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
-    private lazy var imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage()
         image.contentMode = .scaleAspectFill
@@ -31,9 +31,12 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         self.imageView.image = UIImage(named: name)
     }
     
-    func setupWithImage(with image: UIImage){
-           self.imageView.image = image
-       }
+    func setupWithImage(with image: UIImage) {
+        self.imageView.image = image
+    }
+    func setupWithIndex(with index: Int) {
+        self.imageView.image = photoCollection[index]
+    }
     
     private func setupView() {
         self.addSubview(imageView)
