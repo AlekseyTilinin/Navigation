@@ -18,9 +18,9 @@ class Checker {
     static let shared = Checker()
     
     private let logIn: String
-    private let password: String
+    let password: String
 
-    private init() {
+    init() {
         logIn = ""
         password = ""
     }

@@ -111,28 +111,29 @@ class LogInViewController: UIViewController {
             }
         }
         
-        generatePasswordButton.buttonAction = { [self] in
-            passwordTextField.text = nil
-            generatePasswordButton.isEnabled = false
-            generatePasswordButton.backgroundColor = .systemGray
-            activityIndicator.startAnimating()
-            
-            var password: String {
-                let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-                return String((0..<4).map { _ in letters.randomElement()! })
-        }
-            
-            DispatchQueue.global(qos: .userInitiated).async {
-                self.bruteForce(passwordToUnlock: password)
-            }
-        }
-    }
+       generatePasswordButton.buttonAction = { [self] in
+           
+           passwordTextField.text = nil
+           generatePasswordButton.isEnabled = false
+           generatePasswordButton.backgroundColor = .systemGray
+           activityIndicator.startAnimating()
+           
+           var password: String {
+               let letters = "0123456789"
+               return String((0..<1).map { _ in letters.randomElement()! })
+           }
+           DispatchQueue.global(qos: .userInitiated).async {
+               self.bruteForce(passwordToUnlock: password)
+           }
+       }
+   }
+    
     
     private func bruteForce(passwordToUnlock: String) {
         let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
-        
+
         var password: String = ""
-        
+
         while password != passwordToUnlock {
             password = generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
         }

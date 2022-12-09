@@ -11,6 +11,8 @@ import iOSIntPackage
 class PhotosViewController: UIViewController {
     
     var filteredImage: [CGImage?] = []
+    var count: Int = 0
+    let filters: [ColorFilter] = [.fade, .chrome, .sepia(intensity: 12.0), .bloom(intensity: 1.0), .transfer]
     
     private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -41,13 +43,26 @@ class PhotosViewController: UIViewController {
         addViews()
         addConstraints()
         
-        processImagesOnThread()
+        timer()
     }
     
-    func processImagesOnThread() {
-        let timeStart = DispatchTime.now()
+    func timer() {
+        Timer.scheduledTimer(
+            withTimeInterval: 1.0,
+            repeats: true
+        ) { [self] timer in
+            processImagesOnThread(filters[Int.random(in: 0..<filters.count-1)])
+            
+            count += 1
+            if count == 10 {
+                timer.invalidate()
+            }
+        }
+    }
+    
+    func processImagesOnThread(_ filter: ColorFilter) {
         
-        ImageProcessor.init().processImagesOnThread(sourceImages: photoCollection, filter: .colorInvert, qos: .background) { [self] image in
+        ImageProcessor.init().processImagesOnThread(sourceImages: photoCollection, filter: filter, qos: .default) { [self] image in
             filteredImage = image
             for (index,item) in filteredImage.enumerated() {
                 photoCollection[index] = UIImage.init(cgImage: item!)
@@ -56,10 +71,6 @@ class PhotosViewController: UIViewController {
             DispatchQueue.main.async {
                 self.photoGalleryCollectionView.reloadData()
             }
-
-            let timeEnd = DispatchTime.now()
-            let timeInterval = Double(timeEnd.uptimeNanoseconds - timeStart.uptimeNanoseconds) / 1_000_000_000
-            print ("Time interval: \(timeInterval) seconds")
         }
     }
     
