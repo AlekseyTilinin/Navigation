@@ -67,7 +67,15 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     private lazy var logInButton: CustomButton = CustomButton(title: "Log In")
+    
+    private lazy var generatePasswordButton: CustomButton = CustomButton(title: "Generate password")
     
     let alertMessege = UIAlertController(title: "Error", message: "Введены некоректные данные", preferredStyle: .alert)
     
@@ -75,14 +83,14 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.setupGestures()
-        self.buttonPressed()
+        self.addButtonAction()
         self.addViews()
         self.addConstraints()
         
         alertMessege.addAction(UIAlertAction(title: "OK", style: .destructive))
     }
     
-    func buttonPressed() {
+   private func addButtonAction() {
         
         logInButton.buttonAction = { [self] in
             let enteredLogIn = logInTextField.text
@@ -102,6 +110,42 @@ class LogInViewController: UIViewController {
                 self.present(alertMessege, animated: true, completion: nil)
             }
         }
+        
+       generatePasswordButton.buttonAction = { [self] in
+           
+           passwordTextField.text = nil
+           generatePasswordButton.isEnabled = false
+           generatePasswordButton.backgroundColor = .systemGray
+           activityIndicator.startAnimating()
+           
+           var password: String {
+               let letters = "0123456789"
+               return String((0..<1).map { _ in letters.randomElement()! })
+           }
+           DispatchQueue.global(qos: .userInitiated).async {
+               self.bruteForce(passwordToUnlock: password)
+           }
+       }
+   }
+    
+    
+    private func bruteForce(passwordToUnlock: String) {
+        let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
+
+        var password: String = ""
+
+        while password != passwordToUnlock {
+            password = generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
+        }
+        
+        DispatchQueue.main.async { [self] in
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
+            passwordTextField.isSecureTextEntry = false
+            passwordTextField.text = password
+            generatePasswordButton.isEnabled = true
+            generatePasswordButton.backgroundColor = UIColor(patternImage: UIImage(named: "blue_pixel.png")!)
+        }
     }
     
     private func setupGestures() {
@@ -116,6 +160,8 @@ class LogInViewController: UIViewController {
         self.stackView.addArrangedSubview(self.logInTextField)
         self.stackView.addArrangedSubview(self.passwordTextField)
         self.scrollView.addSubview(self.logInButton)
+        self.scrollView.addSubview(self.generatePasswordButton)
+        self.scrollView.addSubview(self.activityIndicator)
     }
     
     private func addConstraints() {
@@ -140,6 +186,14 @@ class LogInViewController: UIViewController {
             self.logInButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
             self.logInButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
             self.logInButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            self.generatePasswordButton.topAnchor.constraint(equalTo: self.logInButton.bottomAnchor, constant: 16),
+            self.generatePasswordButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            self.generatePasswordButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            self.generatePasswordButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            self.activityIndicator.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
+            self.activityIndicator.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -16)
         ])
     }
     
@@ -163,11 +217,11 @@ class LogInViewController: UIViewController {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             
-            let logInButtonBottomPointY = self.logInButton.frame.origin.y + self.logInButton.frame.height
+            let generatePasswordButtonBottomPointY = self.generatePasswordButton.frame.origin.y + self.generatePasswordButton.frame.height
             let keyboardOriginY = self.view.frame.height - keyboardHeight
             
-            let yOffset = keyboardOriginY < logInButtonBottomPointY
-            ? logInButtonBottomPointY - keyboardOriginY + 16 : 0
+            let yOffset = keyboardOriginY < generatePasswordButtonBottomPointY
+            ? generatePasswordButtonBottomPointY - keyboardOriginY + 16 : 0
             
             self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)
         }

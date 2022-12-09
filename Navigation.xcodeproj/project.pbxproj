@@ -25,7 +25,7 @@
 		5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A828C0384F006049FF /* InfoViewController.swift */; };
 		5BEBBE1428BDFD0C0079FC73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1328BDFD0C0079FC73 /* AppDelegate.swift */; };
 		5BEBBE1628BDFD0C0079FC73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1528BDFD0C0079FC73 /* SceneDelegate.swift */; };
-		5BEBBE1828BDFD0C0079FC73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1728BDFD0C0079FC73 /* ViewController.swift */; };
+		5BEBBE1828BDFD0C0079FC73 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1728BDFD0C0079FC73 /* BruteForce.swift */; };
 		5BEBBE1D28BDFD0D0079FC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */; };
 		5BEBBE2028BDFD0D0079FC73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1E28BDFD0D0079FC73 /* LaunchScreen.storyboard */; };
 		5BEBBE2A28BEC9F80079FC73 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE2928BEC9F80079FC73 /* FeedViewController.swift */; };
@@ -76,7 +76,7 @@
 		5BCED6A828C0384F006049FF /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		5BEBBE1328BDFD0C0079FC73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BEBBE1528BDFD0C0079FC73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5BEBBE1728BDFD0C0079FC73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5BEBBE1728BDFD0C0079FC73 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
 		5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BEBBE1F28BDFD0D0079FC73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BEBBE2728BE09B10079FC73 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,6 +132,7 @@
 		5B1684CB2928530F00F0C36E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5BEBBE1728BDFD0C0079FC73 /* BruteForce.swift */,
 				5B18CF1428EEE05600C99985 /* PhotoModel.swift */,
 				5B64FB0B2908AB3000038817 /* UserModel.swift */,
 				5B7BC4C92914B0EE0039043E /* Checker.swift */,
@@ -166,7 +167,6 @@
 				5B1684CB2928530F00F0C36E /* Model */,
 				5B1684CA2928530500F0C36E /* Controller */,
 				5B1684C9292852E300F0C36E /* View */,
-				5BEBBE1728BDFD0C0079FC73 /* ViewController.swift */,
 				5B01EDFE28E2FF5100784E49 /* UITextFieldExtension.swift */,
 				5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */,
 				5BEBBE1E28BDFD0D0079FC73 /* LaunchScreen.storyboard */,
@@ -318,7 +318,7 @@
 				5B18CF1728EEE06900C99985 /* PhotosCollectionViewCell.swift in Sources */,
 				5BEBBE2A28BEC9F80079FC73 /* FeedViewController.swift in Sources */,
 				5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */,
-				5BEBBE1828BDFD0C0079FC73 /* ViewController.swift in Sources */,
+				5BEBBE1828BDFD0C0079FC73 /* BruteForce.swift in Sources */,
 				5BEBBE2C28BECA750079FC73 /* ProfileViewController.swift in Sources */,
 				5B7BC4CA2914B0EE0039043E /* Checker.swift in Sources */,
 				5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */,
