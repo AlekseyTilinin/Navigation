@@ -17,13 +17,13 @@ class Checker {
     
     static let shared = Checker()
     
-    private let logIn: String
-    let password: String
-
-    init() {
+    private init() {
         logIn = ""
         password = ""
     }
+    
+    private let logIn: String
+    private let password: String
     
     func check(logIn: String, password: String) -> Bool {
         self.logIn == logIn && self.password == password
