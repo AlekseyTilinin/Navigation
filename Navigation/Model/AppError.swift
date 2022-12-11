@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AppErrors: Error {
+enum AppError: Error {
     case userNotFound
     case statusNotEntered
 }

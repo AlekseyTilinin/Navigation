@@ -71,18 +71,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
     }
     
-//    func buttonPressed() {
-//        setStatusButton.buttonAction = {
-//            if let text = self.statusLabel.text {
-//                print(text)
-//            }
-//
-//            if self.statusText != "" {
-//                self.statusLabel.text = self.statusText
-//            }
-//        }
-//    }
-    
     private func buttonPressed() {
         setStatusButton.buttonAction = { [self] in
             changeStatus(newStatus: statusTextField.text ?? "") { [self] result in
@@ -104,7 +92,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         }
     }
     
-   func setup(user : User){
+   func setup(user : User) {
         
         avatarImageView.image = user.avatar
         fullNameLabel.text = user.fullName
