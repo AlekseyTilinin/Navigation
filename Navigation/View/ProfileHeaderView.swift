@@ -71,38 +71,59 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
     }
     
-    func buttonPressed() {
-        setStatusButton.buttonAction = {
-            if let text = self.statusLabel.text {
-                print(text)
-            }
-            
-            if self.statusText != "" {
-                self.statusLabel.text = self.statusText
+//    func buttonPressed() {
+//        setStatusButton.buttonAction = {
+//            if let text = self.statusLabel.text {
+//                print(text)
+//            }
+//
+//            if self.statusText != "" {
+//                self.statusLabel.text = self.statusText
+//            }
+//        }
+//    }
+    
+    private func buttonPressed() {
+        setStatusButton.buttonAction = { [self] in
+            changeStatus(newStatus: statusTextField.text ?? "") { [self] result in
+                switch result {
+                case .success(let status):
+                    statusLabel.text = status
+                case .failure:
+                    statusLabel.text = "Waiting for something..."
+                }
             }
         }
     }
     
-    func setup(user : User){
+    private func changeStatus(newStatus status: String, complition: @escaping (Result <String, AppErrors>) -> Void) {
+        if status == "" {
+            complition(.failure(.statusNotEntered))
+        } else {
+            complition(.success(status))
+        }
+    }
+    
+   func setup(user : User){
         
         avatarImageView.image = user.avatar
         fullNameLabel.text = user.fullName
         statusLabel.text = user.status
        }
     
-    func addGestures() {
+    private func addGestures() {
         let avatrTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarTapGesture(_:)))
         self.avatarImageView.addGestureRecognizer(avatrTapGestureRecognizer)
     }
     
-    func addNotofication(){
+    private func addNotofication(){
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didCloseClick(notification:)),
                                                name: Notification.Name("closeClick!"),
                                                object: nil)
     }
     
-    func addConstreints() {
+    private func addConstreints() {
         
         self.addSubview(avatarImageView)
         self.addSubview(fullNameLabel)

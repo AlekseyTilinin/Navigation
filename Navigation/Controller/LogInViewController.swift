@@ -82,7 +82,13 @@ class LogInViewController: UIViewController {
         alertMessege.addAction(UIAlertAction(title: "OK", style: .destructive))
     }
     
-    func buttonPressed() {
+    private func checkPermission(_ logIn: String, _ password: String) throws {
+        if logInDelegate?.check(self, logIn: logIn, password: password) == false {
+            throw AppErrors.userNotFound
+        }
+    }
+    
+    private func buttonPressed() {
         
         logInButton.buttonAction = { [self] in
             let enteredLogIn = logInTextField.text
@@ -94,15 +100,22 @@ class LogInViewController: UIViewController {
             let userLogIn = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
 #endif
             
-            if logInDelegate?.check(self, logIn: enteredLogIn ?? "", password: enteredPassword ?? "") == true {
+            do {
+                try checkPermission(enteredLogIn ?? "", enteredPassword ?? "")
+                
                 let profileViewController = ProfileViewController()
                 profileViewController.user = userLogIn.user
                 navigationController?.pushViewController(profileViewController, animated: true)
-            } else {
+            }
+            
+            catch AppErrors.userNotFound {
                 self.present(alertMessege, animated: true, completion: nil)
+                print("Error")
             }
         }
     }
+        
+
     
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))

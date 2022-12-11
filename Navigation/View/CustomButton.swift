@@ -10,7 +10,7 @@ import UIKit
 
 class CustomButton: UIButton {
     
-    var buttonAction: () -> Void = {}
+    var buttonAction: () throws -> Void = {}
     
     init (title: String) {
         super.init(frame: .zero)
@@ -28,7 +28,7 @@ class CustomButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func buttonTapped() {
-        buttonAction()
+    @objc private func buttonTapped() throws {
+        try buttonAction()
     }
 }
