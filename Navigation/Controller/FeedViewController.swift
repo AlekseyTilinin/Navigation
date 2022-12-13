@@ -44,7 +44,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         setupConstraints()
         buttonsActions()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .systemBackground
     }
     
     func buttonsActions() {
