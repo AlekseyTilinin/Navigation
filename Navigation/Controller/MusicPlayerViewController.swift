@@ -11,7 +11,7 @@ import AVFoundation
 
 class MusicPlayerViewController: UIViewController {
     
-    var MusicPlayer = AVAudioPlayer()
+    var musicPlayer = AVAudioPlayer()
     var track = 0
     
     private lazy var trackImage : UIImageView = {
@@ -108,8 +108,10 @@ class MusicPlayerViewController: UIViewController {
 
     private func addTrack(track: String) {
         do {
-            MusicPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: track, ofType: "mp3")!))
-            MusicPlayer.prepareToPlay()
+            guard let path = Bundle.main.path(forResource: track, ofType: "mp3") else { return }
+            let url = URL(fileURLWithPath: path)
+            musicPlayer = try AVAudioPlayer(contentsOf: url)
+            musicPlayer.prepareToPlay()
         }
         catch {
             print(error)
@@ -122,21 +124,21 @@ class MusicPlayerViewController: UIViewController {
         titleLable.text = MusicModel().music[track]
         stopButton.isEnabled = true
 
-        if MusicPlayer.isPlaying {
-            MusicPlayer.pause()
+        if musicPlayer.isPlaying {
+            musicPlayer.pause()
             playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         } else {
             addTrack(track: MusicModel().music[track])
-            MusicPlayer.play()
+            musicPlayer.play()
             playButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
         }
     }
 
     @objc
     func stop() {
-        if MusicPlayer.currentTime != .zero {
-            MusicPlayer.stop()
-            MusicPlayer.currentTime = .zero
+        if musicPlayer.currentTime != .zero {
+            musicPlayer.stop()
+            musicPlayer.currentTime = .zero
             stopButton.isEnabled = false
             playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
             titleLable.text = ""
