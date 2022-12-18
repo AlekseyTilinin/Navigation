@@ -84,7 +84,7 @@ class LogInViewController: UIViewController {
     
     private func checkPermission(_ logIn: String, _ password: String) throws {
         if logInDelegate?.check(self, logIn: logIn, password: password) == false {
-            throw AppErrors.userNotFound
+            throw AppError.userNotFound
         }
     }
     
@@ -108,7 +108,7 @@ class LogInViewController: UIViewController {
                 navigationController?.pushViewController(profileViewController, animated: true)
             }
             
-            catch AppErrors.userNotFound {
+            catch AppError.userNotFound {
                 self.present(alertMessege, animated: true, completion: nil)
                 print("Error")
             }

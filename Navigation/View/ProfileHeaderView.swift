@@ -84,7 +84,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         }
     }
     
-    private func changeStatus(newStatus status: String, complition: @escaping (Result <String, AppErrors>) -> Void) {
+    private func changeStatus(newStatus status: String, complition: @escaping (Result <String, AppError>) -> Void) {
         if status == "" {
             complition(.failure(.statusNotEntered))
         } else {
