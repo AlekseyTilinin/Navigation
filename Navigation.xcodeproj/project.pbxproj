@@ -28,6 +28,7 @@
 		5BCBB5822945B984003E9709 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBB5812945B984003E9709 /* AppError.swift */; };
 		5BCBB5842947D95B003E9709 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBB5832947D95B003E9709 /* MusicPlayerViewController.swift */; };
 		5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A828C0384F006049FF /* InfoViewController.swift */; };
+		5BE9E4AB295CF5E300E2A5FC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9E4AA295CF5E300E2A5FC /* NetworkService.swift */; };
 		5BEBBE1428BDFD0C0079FC73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1328BDFD0C0079FC73 /* AppDelegate.swift */; };
 		5BEBBE1628BDFD0C0079FC73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1528BDFD0C0079FC73 /* SceneDelegate.swift */; };
 		5BEBBE1D28BDFD0D0079FC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		5BCBB5832947D95B003E9709 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 		5BCED6A628BF1A93006049FF /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		5BCED6A828C0384F006049FF /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		5BE9E4AA295CF5E300E2A5FC /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5BEBBE1328BDFD0C0079FC73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BEBBE1528BDFD0C0079FC73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				5BCBB5812945B984003E9709 /* AppError.swift */,
 				5B01EDFE28E2FF5100784E49 /* UITextFieldExtension.swift */,
 				5BC100A02947FD4800146B7F /* MusicModel.swift */,
+				5BE9E4AA295CF5E300E2A5FC /* NetworkService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			files = (
 				5B18CF1928EEE07D00C99985 /* PhotosTableViewCell.swift in Sources */,
 				5B1684CD29285EB000F0C36E /* FeedModel.swift in Sources */,
+				5BE9E4AB295CF5E300E2A5FC /* NetworkService.swift in Sources */,
 				5B18CF1B28EEE09000C99985 /* PhotosViewController.swift in Sources */,
 				5B1684C82920F9D600F0C36E /* CustomButton.swift in Sources */,
 				5BEBBE3528BEE9820079FC73 /* PostViewController.swift in Sources */,

@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var feedTabNavigationController: UINavigationController!
     var logInTabNavigationController: UINavigationController!
     
+    var appConfiguration: AppConfiguration?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     
@@ -48,6 +49,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
+        
+        appConfiguration = AppConfiguration.allCases.randomElement()
+
+         if let configuration = appConfiguration {
+             NetworkService.request(for: configuration)
+         } else {
+             print("Bad url to request")
+         }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
