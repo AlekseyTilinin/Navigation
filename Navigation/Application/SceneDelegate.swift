@@ -11,8 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    var firstTabNavigationController : UINavigationController!
-    var secondTabNavigationControoller : UINavigationController!
+    var musicTabNavigationController: UINavigationController!
+    var feedTabNavigationController: UINavigationController!
+    var logInTabNavigationController: UINavigationController!
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -21,26 +22,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         
-        firstTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
-        secondTabNavigationControoller = UINavigationController.init(rootViewController: LogInViewController())
+        let logInVC = LogInViewController()
+//        logInVC.logInDelegate = LogInInspector()  // для задачи №1
+        logInVC.logInDelegate = MyLogInFactory().makeLogInInspector()
+        logInTabNavigationController = UINavigationController.init(rootViewController: logInVC)
         
-        tabBarController.viewControllers = [firstTabNavigationController, secondTabNavigationControoller]
+        musicTabNavigationController = UINavigationController.init(rootViewController: MusicPlayerViewController())
         
-        let item1 = UITabBarItem(title: "Feed", image: UIImage(systemName: "newspaper"), tag: 0)
-        let item2 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.fill"), tag: 1)
+        feedTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
         
-        firstTabNavigationController.tabBarItem = item1
-        secondTabNavigationControoller.tabBarItem = item2
+        tabBarController.viewControllers = [logInTabNavigationController, feedTabNavigationController, musicTabNavigationController]
+        
+        let item1 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.circle"), tag: 0)
+        let item2 = UITabBarItem(title: "Feed", image: UIImage(systemName: "newspaper"), tag: 1)
+        let item3 = UITabBarItem(title: "Music", image: UIImage(systemName: "music.note.list"), tag: 2)
+        
+        logInTabNavigationController.tabBarItem = item1
+        feedTabNavigationController.tabBarItem = item2
+        musicTabNavigationController.tabBarItem = item3
 
-        UITabBar.appearance().tintColor = .purple
+        UITabBar.appearance().tintColor = UIColor(named: "AccentColor")
         UITabBar.appearance().backgroundColor = .systemBackground
         
-
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
-        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
