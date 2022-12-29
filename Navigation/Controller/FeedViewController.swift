@@ -64,7 +64,7 @@ class FeedViewController: UIViewController {
             if check == true {
                 resultIndicator.backgroundColor = .green
                 resultIndicator.text = "Успех!"
-            }else{
+            } else {
                 resultIndicator.backgroundColor = .red
                 resultIndicator.text = "Провал!"
             }

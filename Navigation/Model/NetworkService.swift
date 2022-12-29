@@ -9,11 +9,20 @@ import Foundation
 
 enum AppConfiguration : String, CaseIterable {
     
-    case people = "https://swapi.dev/api/people/8"
-    case starships = "https://swapi.dev/api/starships/3"
-    case planets = "https://swapi.dev/api/planets/5"
-    
+    case first = "https://jsonplaceholder.typicode.com/todos/1"
+    case second = "https://jsonplaceholder.typicode.com/todos/2"
+    case third = "https://jsonplaceholder.typicode.com/todos/3"
+    case fourth = "https://jsonplaceholder.typicode.com/todos/4"
+    case fifth = "https://jsonplaceholder.typicode.com/todos/5"
+    case fourteenth = "https://jsonplaceholder.typicode.com/todos/14"
 }
+
+struct InfoTitle {
+    
+    var title: String = ""
+}
+
+var infoTitle = InfoTitle()
 
 struct NetworkService {
     
@@ -24,17 +33,23 @@ struct NetworkService {
             let task = urlSession.dataTask(with: url, completionHandler: { data, responce, error in
                 
                 if let parsedData = data {
-                    print("Data \((String(data: parsedData, encoding: .utf8)) ?? "")")
+                    let str = String(data: parsedData, encoding: .utf8)
+                    
+                    if let stringToSerilization = str {
+                        let dataToSerilization = Data(stringToSerilization.utf8)
+                        
+                        do {
+                            
+                            if let json = try JSONSerialization.jsonObject(with: dataToSerilization, options: []) as? [String: Any] {
+                                if let title = json["title"] as? String {
+                                    infoTitle.title = title
+                                }
+                            }
+                        } catch let error as NSError {
+                            print("Error: \(error)")
+                        }
+                    }
                 }
-                
-                if let responce = responce as? HTTPURLResponse {
-                    print("Responce")
-                    print("AllHeaderFields: \(responce.allHeaderFields)")
-                    print("StatusCode: \(responce.statusCode)")
-                }
-                
-                print("Error: \(String(describing: error))")
-                print(error?.localizedDescription as Any)
             })
             
             task.resume()

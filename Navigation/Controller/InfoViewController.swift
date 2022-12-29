@@ -9,32 +9,30 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
-    private let button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Show Alert", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = .cyan
-        button.layer.cornerRadius = 14
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = infoTitle.title
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    let alertController = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+    private lazy var button: CustomButton = CustomButton(title: "Show Alert")
+    
+    private lazy var alertController = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-    }
-    
-    func setupUI() {
-        setupAlertConfiguration()
-        setupConstraints()
-        addTargets()
+        view.backgroundColor = .systemBackground
         
-        view.backgroundColor = .orange
+        setupButtonAndAlert()
+        setupConstraints()
     }
     
-    func setupAlertConfiguration() {
+    func setupButtonAndAlert() {
+        button.buttonAction = { [self] in
+            present(alertController, animated: true, completion: nil)
+        }
+        
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
            print("Alert")
         }))
@@ -43,23 +41,17 @@ class InfoViewController: UIViewController {
         }))
     }
     
-    func addTargets() {
-        button.addTarget(self, action: #selector(addTarget), for: .touchUpInside)
-    }
-    
     func setupConstraints() {
 
         view.addSubview(button)
+        view.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-
         ])
     }
-    
-    @objc func addTarget() {
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
 }
