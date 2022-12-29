@@ -11,7 +11,16 @@ class InfoViewController: UIViewController {
     
     var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = infoTitle.title
+        label.text = infoTitle
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var orbitalPeriod: UILabel = {
+        let label = UILabel()
+        label.text = "Период обращения планеты \(planetName) вокруг своей звезды равен: \(planetOrbitalPeriod)"
+        label.numberOfLines = 0
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,10 +54,15 @@ class InfoViewController: UIViewController {
 
         view.addSubview(button)
         view.addSubview(titleLabel)
+        view.addSubview(orbitalPeriod)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            orbitalPeriod.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100),
+            orbitalPeriod.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            orbitalPeriod.widthAnchor.constraint(equalToConstant: 300),
             
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.centerYAnchor.constraint(equalTo: view.centerYAnchor)

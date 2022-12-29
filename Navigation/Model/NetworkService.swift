@@ -7,22 +7,40 @@
 
 import Foundation
 
-enum AppConfiguration : String, CaseIterable {
+enum AppConfiguration : String {
     
-    case first = "https://jsonplaceholder.typicode.com/todos/1"
-    case second = "https://jsonplaceholder.typicode.com/todos/2"
-    case third = "https://jsonplaceholder.typicode.com/todos/3"
-    case fourth = "https://jsonplaceholder.typicode.com/todos/4"
-    case fifth = "https://jsonplaceholder.typicode.com/todos/5"
-    case fourteenth = "https://jsonplaceholder.typicode.com/todos/14"
+    case title = "https://jsonplaceholder.typicode.com/todos/1"
+    case planets = "https://swapi.dev/api/planets/1"
 }
 
-struct InfoTitle {
+struct UserData: Codable {
     
-    var title: String = ""
+    var userId: Int
+    var id: Int
+    var title: String
+    var complited: Bool
 }
 
-var infoTitle = InfoTitle()
+struct PlanetData: Codable {
+    var name: String
+    var rotationPeriod: String
+    var orbitalPeriod: String
+    var diameter: String
+    var climate: String
+    var gravity: String
+    var terrain: String
+    var surfaceWater: String
+    var population: String
+    var residents: [String]
+    var films: [String]
+    var created: String
+    var edited: String
+    var url: String
+}
+
+var infoTitle: String = ""
+var planetOrbitalPeriod: String = ""
+var planetName: String = ""
 
 struct NetworkService {
     
@@ -33,20 +51,34 @@ struct NetworkService {
             let task = urlSession.dataTask(with: url, completionHandler: { data, responce, error in
                 
                 if let parsedData = data {
-                    let str = String(data: parsedData, encoding: .utf8)
-                    
-                    if let stringToSerilization = str {
-                        let dataToSerilization = Data(stringToSerilization.utf8)
+                    if configuration == AppConfiguration.title {
+                        let str = String(data: parsedData, encoding: .utf8)
+
+                        if let stringToSerilization = str {
+                            let dataToSerilization = Data(stringToSerilization.utf8)
+
+                            do {
+                                if let json = try JSONSerialization.jsonObject(with: dataToSerilization, options: []) as? [String: Any] {
+                                    if let title = json["title"] as? String {
+                                        infoTitle = title
+                                    }
+                                }
+                            } catch let error as NSError {
+                                print("Error: \(error)")
+                            }
+                        }
+                        
+                    } else if configuration == AppConfiguration.planets {
                         
                         do {
-                            
-                            if let json = try JSONSerialization.jsonObject(with: dataToSerilization, options: []) as? [String: Any] {
-                                if let title = json["title"] as? String {
-                                    infoTitle.title = title
-                                }
-                            }
-                        } catch let error as NSError {
-                            print("Error: \(error)")
+                            let decoder = JSONDecoder()
+                            decoder.keyDecodingStrategy = .convertFromSnakeCase
+                            let planet = try decoder.decode(PlanetData.self, from: parsedData)
+                            planetOrbitalPeriod = planet.orbitalPeriod
+                            planetName = planet.name
+                        }
+                        catch let error {
+                            print(error)
                         }
                     }
                 }

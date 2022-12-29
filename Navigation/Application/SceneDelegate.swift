@@ -50,7 +50,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-        appConfiguration = AppConfiguration.allCases.randomElement()
+        appConfiguration = AppConfiguration.title
+
+         if let configuration = appConfiguration {
+             NetworkService.request(for: configuration)
+         } else {
+             print("Bad url to request")
+         }
+        
+        appConfiguration = AppConfiguration.planets
 
          if let configuration = appConfiguration {
              NetworkService.request(for: configuration)
