@@ -25,47 +25,69 @@ class InfoViewController: UIViewController {
         return label
     }()
     
-    private lazy var button: CustomButton = CustomButton(title: "Show Alert")
-    
-    private lazy var alertController = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+    private lazy var tableView: UITableView = {
+         let tableView = UITableView(frame: .zero, style: .plain)
+         tableView.dataSource = self
+         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultTableCellIdentifier")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+         return tableView
+     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
-        setupButtonAndAlert()
         setupConstraints()
     }
     
-    func setupButtonAndAlert() {
-        button.buttonAction = { [self] in
-            present(alertController, animated: true, completion: nil)
-        }
+    override func viewDidAppear(_ animated: Bool) {
+          super.viewDidAppear(animated)
         
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-           print("Alert")
-        }))
-        alertController.addAction(UIAlertAction(title: "OKK", style: .default, handler: { _ in
-            print("Alert")
-        }))
-    }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+              self.tableView.reloadData()
+
+          }
+      }
     
     func setupConstraints() {
 
-        view.addSubview(button)
         view.addSubview(titleLabel)
         view.addSubview(orbitalPeriod)
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            orbitalPeriod.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100),
+            orbitalPeriod.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
             orbitalPeriod.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             orbitalPeriod.widthAnchor.constraint(equalToConstant: 300),
             
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            tableView.topAnchor.constraint(equalTo: orbitalPeriod.bottomAnchor, constant: 50),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
+
+extension InfoViewController : UITableViewDataSource {
+
+     func numberOfSections(in tableView: UITableView) -> Int {
+         return 1
+     }
+
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return residents.count
+     }
+
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+         let cell = tableView.dequeueReusableCell(withIdentifier: "defaultTableCellIdentifier", for: indexPath)
+
+         NetworkService.request(for: residents[indexPath.row], index: indexPath.row)
+         cell.textLabel?.text = residents[indexPath.row]
+
+         return cell
+     }
+ }

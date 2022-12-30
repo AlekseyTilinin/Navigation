@@ -39,8 +39,11 @@ struct PlanetData: Codable {
 }
 
 var infoTitle: String = ""
+
 var planetOrbitalPeriod: String = ""
 var planetName: String = ""
+
+var residents: [String] = []
 
 struct NetworkService {
     
@@ -51,12 +54,13 @@ struct NetworkService {
             let task = urlSession.dataTask(with: url, completionHandler: { data, responce, error in
                 
                 if let parsedData = data {
-                    if configuration == AppConfiguration.title {
+                    switch configuration {
+                    case .title:
                         let str = String(data: parsedData, encoding: .utf8)
-
+                        
                         if let stringToSerilization = str {
                             let dataToSerilization = Data(stringToSerilization.utf8)
-
+                            
                             do {
                                 if let json = try JSONSerialization.jsonObject(with: dataToSerilization, options: []) as? [String: Any] {
                                     if let title = json["title"] as? String {
@@ -68,7 +72,7 @@ struct NetworkService {
                             }
                         }
                         
-                    } else if configuration == AppConfiguration.planets {
+                    case .planets:
                         
                         do {
                             let decoder = JSONDecoder()
@@ -76,9 +80,40 @@ struct NetworkService {
                             let planet = try decoder.decode(PlanetData.self, from: parsedData)
                             planetOrbitalPeriod = planet.orbitalPeriod
                             planetName = planet.name
+                            residents = planet.residents
                         }
                         catch let error {
                             print(error)
+                        }
+                    }
+                }
+            })
+            
+            task.resume()
+        }
+    }
+    
+    static func request(for configuration: String, index: Int) {
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        
+        if let url = URL(string: configuration) {
+            let task = urlSession.dataTask(with: url, completionHandler: { data, responce, error in
+                
+                if let parsedData = data {
+                    let str = String(data: parsedData, encoding: .utf8)
+                    
+                    if let stringToSerilization = str {
+                        let dataToSerilization = Data(stringToSerilization.utf8)
+                        
+                        do {
+                            if let json = try JSONSerialization.jsonObject(with: dataToSerilization, options: [] ) as? [String: Any] {
+                                if let name = json["name"] as? String {
+                                    residents[index] = name
+                                }
+                            }
+                            
+                        } catch let error as NSError {
+                            print("Error: \(error)")
                         }
                     }
                 }
