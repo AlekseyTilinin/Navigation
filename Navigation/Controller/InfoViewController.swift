@@ -9,57 +9,85 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
-    private let button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Show Alert", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.backgroundColor = .cyan
-        button.layer.cornerRadius = 14
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = infoTitle
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
-    let alertController = UIAlertController(title: "Alert", message: "Message", preferredStyle: .alert)
+    var orbitalPeriod: UILabel = {
+        let label = UILabel()
+        label.text = "Период обращения планеты \(planetName) вокруг своей звезды равен: \(planetOrbitalPeriod)"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var tableView: UITableView = {
+         let tableView = UITableView(frame: .zero, style: .plain)
+         tableView.dataSource = self
+         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultTableCellIdentifier")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+         return tableView
+     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-    }
-    
-    func setupUI() {
-        setupAlertConfiguration()
-        setupConstraints()
-        addTargets()
+        view.backgroundColor = .systemBackground
         
-        view.backgroundColor = .orange
+        setupConstraints()
     }
     
-    func setupAlertConfiguration() {
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-           print("Alert")
-        }))
-        alertController.addAction(UIAlertAction(title: "OKK", style: .default, handler: { _ in
-            print("Alert")
-        }))
-    }
-    
-    func addTargets() {
-        button.addTarget(self, action: #selector(addTarget), for: .touchUpInside)
-    }
+    override func viewDidAppear(_ animated: Bool) {
+          super.viewDidAppear(animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+              self.tableView.reloadData()
+
+          }
+      }
     
     func setupConstraints() {
 
-        view.addSubview(button)
+        view.addSubview(titleLabel)
+        view.addSubview(orbitalPeriod)
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            orbitalPeriod.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
+            orbitalPeriod.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            orbitalPeriod.widthAnchor.constraint(equalToConstant: 300),
+            
+            tableView.topAnchor.constraint(equalTo: orbitalPeriod.bottomAnchor, constant: 50),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
-    @objc func addTarget() {
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
 }
+
+extension InfoViewController : UITableViewDataSource {
+
+     func numberOfSections(in tableView: UITableView) -> Int {
+         return 1
+     }
+
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return residents.count
+     }
+
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+         let cell = tableView.dequeueReusableCell(withIdentifier: "defaultTableCellIdentifier", for: indexPath)
+
+         NetworkService.request(for: residents[indexPath.row], index: indexPath.row)
+         cell.textLabel?.text = residents[indexPath.row]
+
+         return cell
+     }
+ }
