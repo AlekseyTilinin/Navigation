@@ -7,9 +7,9 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class LoginViewController: UIViewController {
     
-    var logInDelegate: LogInViewControllerDelegate?
+    var loginDelegate: LoginViewControllerDelegate?
     
     private lazy var logoImageView: UIImageView = {
         let logo = UIImageView()
@@ -36,7 +36,7 @@ class LogInViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var logInTextField: UITextField = {
+    private lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
         textField.font = UIFont.systemFont(ofSize: 16)
@@ -67,9 +67,7 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    private lazy var logInButton: CustomButton = CustomButton(title: "Log In")
-    
-    let alertMessege = UIAlertController(title: "Error", message: "Введены некоректные данные", preferredStyle: .alert)
+    private lazy var loginButton: CustomButton = CustomButton(title: "Log In")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,42 +76,65 @@ class LogInViewController: UIViewController {
         self.buttonPressed()
         self.addViews()
         self.addConstraints()
-        
-        alertMessege.addAction(UIAlertAction(title: "OK", style: .destructive))
-    }
-    
-    private func checkPermission(_ logIn: String, _ password: String) throws {
-        if logInDelegate?.check(self, logIn: logIn, password: password) == false {
-            throw AppError.userNotFound
-        }
     }
     
     private func buttonPressed() {
         
-        logInButton.buttonAction = { [self] in
-            let enteredLogIn = logInTextField.text
-            let enteredPassword = passwordTextField.text
+        
+        loginButton.buttonAction = { [self] in
             
 #if DEBUG
-            let userLogIn = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
+            let userLogin = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
 #else
-            let userLogIn = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
+            let userLogin = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
 #endif
             
-            do {
-                try checkPermission(enteredLogIn ?? "", enteredPassword ?? "")
-                
-                let profileViewController = ProfileViewController()
-                profileViewController.user = userLogIn.user
-                navigationController?.pushViewController(profileViewController, animated: true)
-            }
+            let enteredLogin = loginTextField.text!
+            let enteredPassword = passwordTextField.text!
             
-            catch AppError.userNotFound {
-                self.present(alertMessege, animated: true, completion: nil)
-                print("Error")
+            Checker().checkCredentials(login: enteredLogin, password: enteredPassword) { result in
+                if result == "Success authorization" {
+                    let profileViewController = ProfileViewController()
+                    profileViewController.user = userLogin.user
+                    self.navigationController?.pushViewController(profileViewController, animated: true)
+                } else if result == "There is no user record corresponding to this identifier. The user may have been deleted." {
+                    self.alertBadLogin(message: result) { result in
+                        Checker().signUp(login: enteredLogin, password: enteredPassword) { result in
+                            if result == "Success registration" {
+                                self.alertSuccess(message: result)
+                                
+                            } else {
+                                self.alertBadPassword(message: result)
+                            }
+                        }
+                    }
+                } else {
+                    self.alertBadPassword(message: result)
+                }
             }
         }
     }
+    
+    func alertBadPassword(message: String) {
+            let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Try again", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }
+
+        func alertSuccess(message : String){
+            let alert = UIAlertController(title: "Success", message: message, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
+
+        func alertBadLogin(message : String, complition: @escaping (Bool) -> Void) {
+            let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Register new user", style: .default) { action in
+                    complition(true)
+                })
+                alert.addAction(UIAlertAction(title: "Try again", style: .default))
+                self.present(alert, animated: true, completion: nil)
+        }
         
 
     
@@ -126,9 +147,9 @@ class LogInViewController: UIViewController {
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.logoImageView)
         self.scrollView.addSubview(self.stackView)
-        self.stackView.addArrangedSubview(self.logInTextField)
+        self.stackView.addArrangedSubview(self.loginTextField)
         self.stackView.addArrangedSubview(self.passwordTextField)
-        self.scrollView.addSubview(self.logInButton)
+        self.scrollView.addSubview(self.loginButton)
     }
     
     private func addConstraints() {
@@ -149,17 +170,17 @@ class LogInViewController: UIViewController {
             self.stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
             self.stackView.heightAnchor.constraint(equalToConstant: 100),
             
-            self.logInButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16),
-            self.logInButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-            self.logInButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            self.logInButton.heightAnchor.constraint(equalToConstant: 50),
+            self.loginButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16),
+            self.loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            self.loginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            self.loginButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if logInButton.isHighlighted || logInButton.isSelected || !logInButton.isEnabled { logInButton.alpha = 0.8 }
+        if loginButton.isHighlighted || loginButton.isSelected || !loginButton.isEnabled { loginButton.alpha = 0.8 }
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didShowKeyboard(_:)),
@@ -176,11 +197,11 @@ class LogInViewController: UIViewController {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             
-            let logInButtonBottomPointY = self.logInButton.frame.origin.y + self.logInButton.frame.height
+            let loginButtonBottomPointY = self.loginButton.frame.origin.y + self.loginButton.frame.height
             let keyboardOriginY = self.view.frame.height - keyboardHeight
             
-            let yOffset = keyboardOriginY < logInButtonBottomPointY
-            ? logInButtonBottomPointY - keyboardOriginY + 16 : 0
+            let yOffset = keyboardOriginY < loginButtonBottomPointY
+            ? loginButtonBottomPointY - keyboardOriginY + 16 : 0
             
             self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)
         }
