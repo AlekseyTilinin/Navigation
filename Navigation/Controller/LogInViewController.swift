@@ -49,6 +49,7 @@ class LoginViewController: UIViewController {
         textField.placeholder = "Введите логин"
         textField.clearButtonMode = .whileEditing
         textField.setPaddingPoints(15)
+        textField.keyboardType = .emailAddress
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -67,7 +68,8 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    private lazy var loginButton: CustomButton = CustomButton(title: "Log In")
+    private lazy var loginButton: CustomButton = CustomButton(title: "Login")
+    private lazy var registrationButton: CustomButton = CustomButton(title: "Registration")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,64 +82,88 @@ class LoginViewController: UIViewController {
     
     private func buttonPressed() {
         
+#if DEBUG
+        let userLogin = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
+#else
+        let userLogin = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
+#endif
         
         loginButton.buttonAction = { [self] in
             
-#if DEBUG
-            let userLogin = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
-#else
-            let userLogin = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
-#endif
+            //#if DEBUG
+            //            let userLogin = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
+            //#else
+            //            let userLogin = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
+            //#endif
+            //
+            let enteredLogin = loginTextField.text!
+            let enteredPassword = passwordTextField.text!
+            
+            Checker().checkCredentials(login: enteredLogin, password: enteredPassword) { result in
+                print(result)
+                if result == "Success authorization" {
+                    let profileViewController = ProfileViewController()
+                    profileViewController.user = userLogin.user
+                    self.navigationController?.pushViewController(profileViewController, animated: true)
+                    
+                } else if result == "There is no user record corresponding to this identifier. The user may have been deleted." {
+                    self.alertRegistration(message: result)
+                } else {
+                    self.alertBadPassword(message: result)
+                }
+            }
+        }
+    
+        
+        registrationButton.buttonAction = { [self] in
             
             let enteredLogin = loginTextField.text!
             let enteredPassword = passwordTextField.text!
             
             Checker().checkCredentials(login: enteredLogin, password: enteredPassword) { result in
-                if result == "Success authorization" {
-                    let profileViewController = ProfileViewController()
-                    profileViewController.user = userLogin.user
-                    self.navigationController?.pushViewController(profileViewController, animated: true)
-                } else if result == "There is no user record corresponding to this identifier. The user may have been deleted." {
+                print(result)
+                if result == "There is no user record corresponding to this identifier. The user may have been deleted." {
                     self.alertBadLogin(message: result) { result in
                         Checker().signUp(login: enteredLogin, password: enteredPassword) { result in
                             if result == "Success registration" {
                                 self.alertSuccess(message: result)
-                                
                             } else {
                                 self.alertBadPassword(message: result)
                             }
                         }
                     }
-                } else {
-                    self.alertBadPassword(message: result)
                 }
             }
         }
     }
     
     func alertBadPassword(message: String) {
-            let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Try again", style: .default))
-            self.present(alert, animated: true, completion: nil)
-        }
-
-        func alertSuccess(message : String){
-            let alert = UIAlertController(title: "Success", message: message, preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-            self.present(alert, animated: true, completion: nil)
-        }
-
-        func alertBadLogin(message : String, complition: @escaping (Bool) -> Void) {
-            let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Register new user", style: .default) { action in
-                    complition(true)
-                })
-                alert.addAction(UIAlertAction(title: "Try again", style: .default))
-                self.present(alert, animated: true, completion: nil)
-        }
-        
-
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try again", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
     
+    func alertSuccess(message: String) {
+        let alert = UIAlertController(title: "Success", message: message, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func alertBadLogin(message: String, complition: @escaping (Bool) -> Void) {
+        let alert = UIAlertController(title: "Error", message: "Do you want to register new user?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default) { action in
+            complition(true)
+        })
+        alert.addAction(UIAlertAction(title: "No", style: .destructive))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func alertRegistration(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Try again", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
+    }
+        
     private func setupGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
         self.view.addGestureRecognizer(tapGesture)
@@ -150,6 +176,7 @@ class LoginViewController: UIViewController {
         self.stackView.addArrangedSubview(self.loginTextField)
         self.stackView.addArrangedSubview(self.passwordTextField)
         self.scrollView.addSubview(self.loginButton)
+        self.scrollView.addSubview(self.registrationButton)
     }
     
     private func addConstraints() {
@@ -165,7 +192,7 @@ class LoginViewController: UIViewController {
             self.logoImageView.widthAnchor.constraint(equalToConstant: 100),
             self.logoImageView.heightAnchor.constraint(equalToConstant: 100),
             
-            self.stackView.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: 120),
+            self.stackView.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: 100),
             self.stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
             self.stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
             self.stackView.heightAnchor.constraint(equalToConstant: 100),
@@ -174,6 +201,11 @@ class LoginViewController: UIViewController {
             self.loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
             self.loginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
             self.loginButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            self.registrationButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 16),
+            self.registrationButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            self.registrationButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
+            self.registrationButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -197,7 +229,7 @@ class LoginViewController: UIViewController {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             
-            let loginButtonBottomPointY = self.loginButton.frame.origin.y + self.loginButton.frame.height
+            let loginButtonBottomPointY = self.registrationButton.frame.origin.y + self.registrationButton.frame.height
             let keyboardOriginY = self.view.frame.height - keyboardHeight
             
             let yOffset = keyboardOriginY < loginButtonBottomPointY

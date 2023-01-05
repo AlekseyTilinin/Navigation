@@ -9,12 +9,6 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
-//protocol LoginViewControllerDelegate {
-//
-//    func checkCregential(_ sender: LoginViewController, login: String, password: String)
-//    func signUp(_ sender: LoginViewController, login: String, password: String)
-//}
-
 protocol LoginViewControllerDelegate {
 
     func checkCredentials(login: String, password: String, complition: @escaping (String) -> Void)
