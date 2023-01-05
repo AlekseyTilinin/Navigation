@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var musicTabNavigationController: UINavigationController!
     var feedTabNavigationController: UINavigationController!
-    var logInTabNavigationController: UINavigationController!
+    var loginTabNavigationController: UINavigationController!
     
     var appConfiguration: AppConfiguration?
     
@@ -23,22 +23,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         
-        let logInVC = LogInViewController()
-//        logInVC.logInDelegate = LogInInspector()  // для задачи №1
-        logInVC.logInDelegate = MyLogInFactory().makeLogInInspector()
-        logInTabNavigationController = UINavigationController.init(rootViewController: logInVC)
+        let loginVC = LoginViewController()
+        loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
+        loginTabNavigationController = UINavigationController.init(rootViewController: loginVC)
         
         musicTabNavigationController = UINavigationController.init(rootViewController: MusicPlayerViewController())
         
         feedTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
         
-        tabBarController.viewControllers = [logInTabNavigationController, feedTabNavigationController, musicTabNavigationController]
+        tabBarController.viewControllers = [loginTabNavigationController, feedTabNavigationController, musicTabNavigationController]
         
         let item1 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.circle"), tag: 0)
         let item2 = UITabBarItem(title: "Feed", image: UIImage(systemName: "newspaper"), tag: 1)
         let item3 = UITabBarItem(title: "Music", image: UIImage(systemName: "music.note.list"), tag: 2)
         
-        logInTabNavigationController.tabBarItem = item1
+        loginTabNavigationController.tabBarItem = item1
         feedTabNavigationController.tabBarItem = item2
         musicTabNavigationController.tabBarItem = item3
 

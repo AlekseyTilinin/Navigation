@@ -7,44 +7,60 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
-protocol LogInViewControllerDelegate {
-    
-    func check(_ sender: LogInViewController, logIn: String, password: String) -> Bool
+//protocol LoginViewControllerDelegate {
+//
+//    func checkCregential(_ sender: LoginViewController, login: String, password: String)
+//    func signUp(_ sender: LoginViewController, login: String, password: String)
+//}
+
+protocol LoginViewControllerDelegate {
+
+    func checkCredentials(login: String, password: String, complition: @escaping (String) -> Void)
+    func signUp(login: String, password: String, complition: @escaping (String) -> Void)
 }
 
-class Checker {
+class Checker: LoginViewControllerDelegate {
     
-    static let shared = Checker()
-    
-    private init() {
-        logIn = ""
-        password = ""
+    func checkCredentials(login: String, password : String, complition: @escaping (String) -> Void) {
+        
+        Auth.auth().signIn(withEmail: login, password: password) { authResult, error in
+            if error != nil {
+                let result = error?.localizedDescription as? String
+                if let res = result {
+                    complition(res)
+                }
+            } else {
+                complition("Success authorization")
+            }
+        }
+        
     }
     
-    private let logIn: String
-    private let password: String
-    
-    func check(logIn: String, password: String) -> Bool {
-        self.logIn == logIn && self.password == password
+    func signUp(login: String, password : String, complition: @escaping (String) -> Void) {
+        
+        Auth.auth().createUser(withEmail: login, password: password) { authResult, error in
+            if error != nil {
+                let result = error?.localizedDescription as? String
+                if let res = result {
+                    complition(res)
+                }
+            } else {
+                complition("Success registration")
+            }
+        }
     }
 }
 
-struct LogInInspector: LogInViewControllerDelegate {
-    
-    func check(_ sender: LogInViewController, logIn: String, password: String) -> Bool {
-        return Checker.shared.check(logIn: logIn, password: password)
-    }
+protocol LoginFactory {
+
+    func makeLoginInspector() -> Checker
 }
 
-protocol LogInFactory {
-    
-    func makeLogInInspector() -> LogInInspector
-}
+struct MyLoginFactory: LoginFactory {
 
-struct MyLogInFactory: LogInFactory {
-    
-    func makeLogInInspector() -> LogInInspector {
-        return LogInInspector()
+    func makeLoginInspector() -> Checker {
+        return Checker()
     }
 }
