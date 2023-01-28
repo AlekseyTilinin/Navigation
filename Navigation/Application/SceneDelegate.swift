@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -64,6 +65,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          } else {
              print("Bad url to request")
          }
+        
+        let config = Realm.Configuration(
+                    schemaVersion: 2)
+                Realm.Configuration.defaultConfiguration = config
+
+                let realm = try! Realm()
+
+                let todos = realm.objects(RealmUser.self)
+                print("❗️\(todos)")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}

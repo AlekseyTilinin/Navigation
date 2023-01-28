@@ -16,6 +16,9 @@
 		5B18CF1728EEE06900C99985 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18CF1628EEE06900C99985 /* PhotosCollectionViewCell.swift */; };
 		5B18CF1928EEE07D00C99985 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18CF1828EEE07D00C99985 /* PhotosTableViewCell.swift */; };
 		5B18CF1B28EEE09000C99985 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B18CF1A28EEE09000C99985 /* PhotosViewController.swift */; };
+		5B26C52E29853AED0020F4B3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B26C52D29853AED0020F4B3 /* RealmManager.swift */; };
+		5B26C53129853B390020F4B3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5B26C53029853B390020F4B3 /* Realm */; };
+		5B26C53329853B390020F4B3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B26C53229853B390020F4B3 /* RealmSwift */; };
 		5B36CD7A291DBC1B0047DE0F /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 5B36CD79291DBC1B0047DE0F /* iOSIntPackage */; };
 		5B6151B228F392E6009D8E55 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B6151B128F392E6009D8E55 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B6151BB28F3938F009D8E55 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A628BF1A93006049FF /* PostModel.swift */; };
@@ -73,10 +76,11 @@
 		5B18CF1628EEE06900C99985 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		5B18CF1828EEE07D00C99985 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		5B18CF1A28EEE09000C99985 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		5B26C52D29853AED0020F4B3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		5B2A282B2920520700EA5A1B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5B6151B128F392E6009D8E55 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
-		5B64FB092908AAA900038817 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B64FB0A2908AAA900038817 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B64FB092908AAA900038817 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Navigation.app; path = "/Users/aleksey/Desktop/Home Work/iosui/Navigation/build/Debug-iphoneos/Navigation.app"; sourceTree = "<absolute>"; };
+		5B64FB0A2908AAA900038817 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = StorageService.framework; path = "/Users/aleksey/Desktop/Home Work/iosui/Navigation/build/Debug-iphoneos/StorageService.framework"; sourceTree = "<absolute>"; };
 		5B64FB0B2908AB3000038817 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5B7BC4C92914B0EE0039043E /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 			files = (
 				5B36CD7A291DBC1B0047DE0F /* iOSIntPackage in Frameworks */,
 				5BE9E4AE296585ED00E2A5FC /* FirebaseAuth in Frameworks */,
+				5B26C53129853B390020F4B3 /* Realm in Frameworks */,
+				5B26C53329853B390020F4B3 /* RealmSwift in Frameworks */,
 				5BE9E4B0296585ED00E2A5FC /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,6 +163,7 @@
 				5B01EDFE28E2FF5100784E49 /* UITextFieldExtension.swift */,
 				5BC100A02947FD4800146B7F /* MusicModel.swift */,
 				5BE9E4AA295CF5E300E2A5FC /* NetworkService.swift */,
+				5B26C52D29853AED0020F4B3 /* RealmManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,8 +191,6 @@
 			children = (
 				5BEBBE1228BDFD0B0079FC73 /* Navigation */,
 				5B6151B028F392E6009D8E55 /* StorageService */,
-				5B64FB092908AAA900038817 /* Navigation.app */,
-				5B64FB0A2908AAA900038817 /* StorageService.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,6 +270,8 @@
 				5B36CD79291DBC1B0047DE0F /* iOSIntPackage */,
 				5BE9E4AD296585ED00E2A5FC /* FirebaseAuth */,
 				5BE9E4AF296585ED00E2A5FC /* FirebaseFirestore */,
+				5B26C53029853B390020F4B3 /* Realm */,
+				5B26C53229853B390020F4B3 /* RealmSwift */,
 			);
 			productName = Navigation;
 			productReference = 5B64FB092908AAA900038817 /* Navigation.app */;
@@ -300,6 +307,7 @@
 			packageReferences = (
 				5B36CD78291DBC1B0047DE0F /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				5BE9E4AC296585ED00E2A5FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5B26C52F29853B390020F4B3 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 5BEBBE0728BDFD0B0079FC73;
 			projectDirPath = "";
@@ -351,6 +359,7 @@
 				5BE9E4AB295CF5E300E2A5FC /* NetworkService.swift in Sources */,
 				5B18CF1B28EEE09000C99985 /* PhotosViewController.swift in Sources */,
 				5B1684C82920F9D600F0C36E /* CustomButton.swift in Sources */,
+				5B26C52E29853AED0020F4B3 /* RealmManager.swift in Sources */,
 				5BEBBE3528BEE9820079FC73 /* PostViewController.swift in Sources */,
 				5BC100A12947FD4800146B7F /* MusicModel.swift in Sources */,
 				5B18CF1728EEE06900C99985 /* PhotosCollectionViewCell.swift in Sources */,
@@ -667,6 +676,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5B26C52F29853B390020F4B3 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		5B36CD78291DBC1B0047DE0F /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
@@ -686,6 +703,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5B26C53029853B390020F4B3 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B26C52F29853B390020F4B3 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		5B26C53229853B390020F4B3 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B26C52F29853B390020F4B3 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		5B36CD79291DBC1B0047DE0F /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5B36CD78291DBC1B0047DE0F /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
