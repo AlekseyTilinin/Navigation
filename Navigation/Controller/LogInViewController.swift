@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LoginViewController: UIViewController {
+    
+#if DEBUG
+    var userLogin: TestUserService?
+#else
+    var userLogin: CurrentUserService?
+#endif
     
     var loginDelegate: LoginViewControllerDelegate?
     
@@ -80,30 +87,64 @@ class LoginViewController: UIViewController {
         self.addConstraints()
     }
     
-    private func buttonPressed() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
 #if DEBUG
-        let userLogin = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
+        userLogin = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
 #else
-        let userLogin = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
+        userLogin = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
 #endif
+
+        let realm = try! Realm()
+        let users = realm.objects(RealmUser.self)
+        let user = users.where {
+                    $0.login == UserDefaults.standard.string(forKey: "userLogin")
+                }
+
+        if !user.isEmpty {
+            if user[0].lastAuth != nil {
+                let profileViewController = ProfileViewController()
+                profileViewController.user = userLogin!.user
+                self.navigationController?.pushViewController(profileViewController, animated: true)
+            }
+        }
+        
+        if loginButton.isHighlighted || loginButton.isSelected || !loginButton.isEnabled { loginButton.alpha = 0.8 }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didShowKeyboard(_:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didHideKeyboard(_:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    private func buttonPressed() {
         
         loginButton.buttonAction = { [self] in
             
-            //#if DEBUG
-            //            let userLogin = TestUserService(user: User(fullName: "Test Test", avatar: UIImage(), status: "Test"))
-            //#else
-            //            let userLogin = CurrentUserService(user: User(fullName: "Surprised Cat", avatar: UIImage(named: "SurprisedCat")!, status: "I'm surprised!"))
-            //#endif
-            //
             let enteredLogin = loginTextField.text!
             let enteredPassword = passwordTextField.text!
             
             Checker().checkCredentials(login: enteredLogin, password: enteredPassword) { result in
-                print(result)
                 if result == "Success authorization" {
+                    
+                    let realm = try! Realm()
+                    let users = realm.objects(RealmUser.self)
+                    let user = users.where {
+                        $0.login == enteredLogin && $0.password == enteredPassword
+                    }
+                
+                    try! realm.write {
+                        user[0].lastAuth = NSDate().timeIntervalSince1970
+                        UserDefaults.standard.set(user[0].login, forKey: "userLogin")
+                    }
+                    
                     let profileViewController = ProfileViewController()
-                    profileViewController.user = userLogin.user
+                    profileViewController.user = self.userLogin!.user
                     self.navigationController?.pushViewController(profileViewController, animated: true)
                     
                 } else if result == "There is no user record corresponding to this identifier. The user may have been deleted." {
@@ -121,12 +162,22 @@ class LoginViewController: UIViewController {
             let enteredPassword = passwordTextField.text!
             
             Checker().checkCredentials(login: enteredLogin, password: enteredPassword) { result in
-                print(result)
                 if result == "There is no user record corresponding to this identifier. The user may have been deleted." {
                     self.alertBadLogin(message: result) { result in
                         Checker().signUp(login: enteredLogin, password: enteredPassword) { result in
                             if result == "Success registration" {
                                 self.alertSuccess(message: result)
+                                
+                                let realm = try! Realm()
+                                let newUser = RealmUser(login: enteredLogin, password: enteredPassword)
+                              
+                                try! realm.write {
+                                    realm.add(newUser)
+                                }
+                                
+                                let profileViewController = ProfileViewController()
+                                profileViewController.user = self.userLogin!.user
+                                self.navigationController?.pushViewController(profileViewController, animated: true)
                             } else {
                                 self.alertBadPassword(message: result)
                             }
@@ -207,21 +258,6 @@ class LoginViewController: UIViewController {
             self.registrationButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
             self.registrationButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if loginButton.isHighlighted || loginButton.isSelected || !loginButton.isEnabled { loginButton.alpha = 0.8 }
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.didShowKeyboard(_:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.didHideKeyboard(_:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
     }
     
     @objc private func didShowKeyboard(_ notification: Notification) {
