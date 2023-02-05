@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var musicTabNavigationController: UINavigationController!
     var feedTabNavigationController: UINavigationController!
     var loginTabNavigationController: UINavigationController!
+    var favoriteNavigationController: UINavigationController!
     
     var appConfiguration: AppConfiguration?
     
@@ -32,15 +33,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         feedTabNavigationController = UINavigationController.init(rootViewController: FeedViewController())
         
-        tabBarController.viewControllers = [loginTabNavigationController, feedTabNavigationController, musicTabNavigationController]
+        favoriteNavigationController = UINavigationController(rootViewController: FavoriteViewController())
+        
+        tabBarController.viewControllers = [loginTabNavigationController,
+                                            feedTabNavigationController,
+                                            musicTabNavigationController,
+                                            favoriteNavigationController]
         
         let item1 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.circle"), tag: 0)
         let item2 = UITabBarItem(title: "Feed", image: UIImage(systemName: "newspaper"), tag: 1)
         let item3 = UITabBarItem(title: "Music", image: UIImage(systemName: "music.note.list"), tag: 2)
+        let item4 = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star"), tag: 4)
         
         loginTabNavigationController.tabBarItem = item1
         feedTabNavigationController.tabBarItem = item2
         musicTabNavigationController.tabBarItem = item3
+        favoriteNavigationController.tabBarItem = item4
 
         UITabBar.appearance().tintColor = UIColor(named: "AccentColor")
         UITabBar.appearance().backgroundColor = .systemBackground
@@ -70,10 +78,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     schemaVersion: 2)
                 Realm.Configuration.defaultConfiguration = config
 
-                let realm = try! Realm()
-
-                let todos = realm.objects(RealmUser.self)
-                print("❗️\(todos)")
+//                let realm = try! Realm()
+//
+//                let todos = realm.objects(RealmUser.self)
+//                print("❗️\(todos)")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
@@ -84,7 +92,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillEnterForeground(_ scene: UIScene) {}
 
-    func sceneDidEnterBackground(_ scene: UIScene) {}
-
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        CoreDataModel().saveContext()
+    }
 }
 

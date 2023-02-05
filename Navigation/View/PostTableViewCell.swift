@@ -6,15 +6,22 @@
 //
 
 import UIKit
+import CoreData
 
 class PostTableViewCell: UITableViewCell {
     
+    var postId: Int = 0
+    var imagePost: String = ""
+    var likesPost: Int = 0
+    var viewsPost: Int = 0
+    
     struct Post {
-        var author: String
-        var image: UIImage?
-        var description: String
-        var likes: String
-        var views: String
+        var postId: Int
+        var postAuthor: String
+        var postImage: String
+        var postDescription: String
+        var postLikes: String
+        var postViews: String
     }
     
     private lazy var postAuthor: UILabel = {
@@ -63,19 +70,28 @@ class PostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupView()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(addToFavotire(_:)))
+                 tap.numberOfTapsRequired = 2
+                 self.addGestureRecognizer(tap)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-        func setup(with post: Post) {
-            self.postAuthor.text = post.author
-            self.postDescription.text = post.description
-            self.postImage.image = post.image
-            self.postLikes.text = post.likes
-            self.postViews.text = post.views
-        }
+    public func setup(with post: Post) {
+        self.postAuthor.text = post.postAuthor
+        self.postDescription.text = post.postDescription
+        self.postImage.image = UIImage(named: "\(post.postImage)")
+        self.postLikes.text = post.postLikes
+        self.postViews.text = post.postViews
+        
+        self.postId = post.postId
+        self.imagePost = post.postImage
+        self.likesPost = Int(post.postLikes) ?? 0
+        self.viewsPost = Int(post.postViews) ?? 0
+    }
     
     private func setupView() {
         self.contentView.addSubview(self.postAuthor)
@@ -107,4 +123,27 @@ class PostTableViewCell: UITableViewCell {
             self.contentView.bottomAnchor.constraint(equalTo: self.postViews.bottomAnchor, constant: 16)
         ])
     }
+    
+    @objc func addToFavotire(_ sender: UITapGestureRecognizer) {
+
+             let posts = CoreDataModel().getPosts()
+             var postIndexes : [Int] = []
+
+             if posts.isEmpty {
+                 print("post is empty")
+                 CoreDataModel().addToFavorite(postId: postId, author: postAuthor.text!, descr: postDescription.text!, likes: likesPost, views: viewsPost, image: imagePost)
+             } else {
+                 for p in posts {
+                     postIndexes.append(Int(p.postId))
+                 }
+
+                 if let index = postIndexes.firstIndex(of: postId) {
+                     print("Post-\(index) already in favorite")
+
+                 } else {
+                     CoreDataModel().addToFavorite(postId: postId, author: postAuthor.text!, descr: postDescription.text!, likes: likesPost, views: viewsPost, image: imagePost)
+                 }
+             }
+
+         }
 }
