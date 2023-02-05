@@ -73,9 +73,9 @@ extension FavoriteViewController : UITableViewDataSource {
             postId: indexPath.row,
             postAuthor: post.author!,
             postImage: post.image!,
-            postDescription: post.description,
-            postLikes: "Likes: \(post.likes)",
-            postViews: "Views: \(post.views)"
+            postDescription: post.descr!,
+            postLikes: Int(post.likes),
+            postViews: Int(post.views)
         )
         cell.setup(with: postViewModel)
         return cell

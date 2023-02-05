@@ -20,8 +20,8 @@ class PostTableViewCell: UITableViewCell {
         var postAuthor: String
         var postImage: String
         var postDescription: String
-        var postLikes: String
-        var postViews: String
+        var postLikes: Int
+        var postViews: Int
     }
     
     private lazy var postAuthor: UILabel = {
@@ -84,13 +84,14 @@ class PostTableViewCell: UITableViewCell {
         self.postAuthor.text = post.postAuthor
         self.postDescription.text = post.postDescription
         self.postImage.image = UIImage(named: "\(post.postImage)")
-        self.postLikes.text = post.postLikes
-        self.postViews.text = post.postViews
+        self.postLikes.text = "Likes: \(post.postLikes)"
+        self.postViews.text = "Views: \(post.postViews)"
         
         self.postId = post.postId
         self.imagePost = post.postImage
-        self.likesPost = Int(post.postLikes) ?? 0
-        self.viewsPost = Int(post.postViews) ?? 0
+        self.likesPost = post.postLikes
+        print(post.postLikes)
+        self.viewsPost = post.postViews
     }
     
     private func setupView() {

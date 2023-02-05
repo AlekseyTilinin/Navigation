@@ -81,8 +81,8 @@ extension PostViewController: UITableViewDataSource, UITableViewDelegate {
             postAuthor: post.author,
             postImage: post.image,
             postDescription: post.description,
-            postLikes: "Likes: \(post.likes)",
-            postViews: "Views: \(post.views)"
+            postLikes: post.likes,
+            postViews: post.views
         )
         cell.setup(with: postViewModel)
         return cell
