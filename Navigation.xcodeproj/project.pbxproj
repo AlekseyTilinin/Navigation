@@ -20,6 +20,8 @@
 		5B26C53129853B390020F4B3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5B26C53029853B390020F4B3 /* Realm */; };
 		5B26C53329853B390020F4B3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B26C53229853B390020F4B3 /* RealmSwift */; };
 		5B36CD7A291DBC1B0047DE0F /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 5B36CD79291DBC1B0047DE0F /* iOSIntPackage */; };
+		5B5736C02988ACD500D7834F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5736BF2988ACD500D7834F /* FavoriteViewController.swift */; };
+		5B5736C22988AFA000D7834F /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5736C12988AFA000D7834F /* CoreDataModel.swift */; };
 		5B6151B228F392E6009D8E55 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B6151B128F392E6009D8E55 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B6151BB28F3938F009D8E55 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A628BF1A93006049FF /* PostModel.swift */; };
 		5B64FB0C2908AB3000038817 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B64FB0B2908AB3000038817 /* UserModel.swift */; };
@@ -31,6 +33,7 @@
 		5BCBB5822945B984003E9709 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBB5812945B984003E9709 /* AppError.swift */; };
 		5BCBB5842947D95B003E9709 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBB5832947D95B003E9709 /* MusicPlayerViewController.swift */; };
 		5BCED6A928C0384F006049FF /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A828C0384F006049FF /* InfoViewController.swift */; };
+		5BDF935C2988B90600EC4FDE /* Navigator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BDF935A2988B90600EC4FDE /* Navigator.xcdatamodeld */; };
 		5BE9E4AB295CF5E300E2A5FC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9E4AA295CF5E300E2A5FC /* NetworkService.swift */; };
 		5BE9E4AE296585ED00E2A5FC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE9E4AD296585ED00E2A5FC /* FirebaseAuth */; };
 		5BE9E4B0296585ED00E2A5FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5BE9E4AF296585ED00E2A5FC /* FirebaseFirestore */; };
@@ -78,9 +81,11 @@
 		5B18CF1A28EEE09000C99985 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		5B26C52D29853AED0020F4B3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		5B2A282B2920520700EA5A1B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		5B5736BD2988AC7F00D7834F /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B5736BE2988AC7F00D7834F /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B5736BF2988ACD500D7834F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		5B5736C12988AFA000D7834F /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		5B6151B128F392E6009D8E55 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
-		5B64FB092908AAA900038817 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Navigation.app; path = "/Users/aleksey/Desktop/Home Work/iosui/Navigation/build/Debug-iphoneos/Navigation.app"; sourceTree = "<absolute>"; };
-		5B64FB0A2908AAA900038817 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = StorageService.framework; path = "/Users/aleksey/Desktop/Home Work/iosui/Navigation/build/Debug-iphoneos/StorageService.framework"; sourceTree = "<absolute>"; };
 		5B64FB0B2908AB3000038817 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5B7BC4C92914B0EE0039043E /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -91,6 +96,7 @@
 		5BCBB5832947D95B003E9709 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 		5BCED6A628BF1A93006049FF /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		5BCED6A828C0384F006049FF /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		5BDF935B2988B90600EC4FDE /* Navigator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Navigator.xcdatamodel; sourceTree = "<group>"; };
 		5BE9E4AA295CF5E300E2A5FC /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5BE9E4B1296588A700E2A5FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BEBBE1328BDFD0C0079FC73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 				5BEBBE3428BEE9820079FC73 /* PostViewController.swift */,
 				5BCED6A828C0384F006049FF /* InfoViewController.swift */,
 				5BCBB5832947D95B003E9709 /* MusicPlayerViewController.swift */,
+				5B5736BF2988ACD500D7834F /* FavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -155,6 +162,7 @@
 		5B1684CB2928530F00F0C36E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5BDF935D298A54B800EC4FDE /* CoreData */,
 				5B18CF1428EEE05600C99985 /* PhotoModel.swift */,
 				5B64FB0B2908AB3000038817 /* UserModel.swift */,
 				5B7BC4C92914B0EE0039043E /* Checker.swift */,
@@ -186,11 +194,22 @@
 			path = Music;
 			sourceTree = "<group>";
 		};
+		5BDF935D298A54B800EC4FDE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				5BDF935A2988B90600EC4FDE /* Navigator.xcdatamodeld */,
+				5B5736C12988AFA000D7834F /* CoreDataModel.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		5BEBBE0728BDFD0B0079FC73 = {
 			isa = PBXGroup;
 			children = (
 				5BEBBE1228BDFD0B0079FC73 /* Navigation */,
 				5B6151B028F392E6009D8E55 /* StorageService */,
+				5B5736BD2988AC7F00D7834F /* Navigation.app */,
+				5B5736BE2988AC7F00D7834F /* StorageService.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,7 +267,7 @@
 			);
 			name = StorageService;
 			productName = StorageService;
-			productReference = 5B64FB0A2908AAA900038817 /* StorageService.framework */;
+			productReference = 5B5736BE2988AC7F00D7834F /* StorageService.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		5BEBBE0F28BDFD0B0079FC73 /* Navigation */ = {
@@ -274,7 +293,7 @@
 				5B26C53229853B390020F4B3 /* RealmSwift */,
 			);
 			productName = Navigation;
-			productReference = 5B64FB092908AAA900038817 /* Navigation.app */;
+			productReference = 5B5736BD2988AC7F00D7834F /* Navigation.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -369,6 +388,7 @@
 				5B7BC4CA2914B0EE0039043E /* Checker.swift in Sources */,
 				5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */,
 				5BCBB5822945B984003E9709 /* AppError.swift in Sources */,
+				5BDF935C2988B90600EC4FDE /* Navigator.xcdatamodeld in Sources */,
 				5B15434528E44705008FD12D /* PostTableViewCell.swift in Sources */,
 				5B64FB0C2908AB3000038817 /* UserModel.swift in Sources */,
 				5BCBB5842947D95B003E9709 /* MusicPlayerViewController.swift in Sources */,
@@ -376,6 +396,8 @@
 				5B01B44728E1F02700AD65C0 /* LoginViewController.swift in Sources */,
 				5B01EDFF28E2FF5100784E49 /* UITextFieldExtension.swift in Sources */,
 				5B18CF1528EEE05600C99985 /* PhotoModel.swift in Sources */,
+				5B5736C02988ACD500D7834F /* FavoriteViewController.swift in Sources */,
+				5B5736C22988AFA000D7834F /* CoreDataModel.swift in Sources */,
 				5BEBBE1628BDFD0C0079FC73 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -729,6 +751,19 @@
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		5BDF935A2988B90600EC4FDE /* Navigator.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5BDF935B2988B90600EC4FDE /* Navigator.xcdatamodel */,
+			);
+			currentVersion = 5BDF935B2988B90600EC4FDE /* Navigator.xcdatamodel */;
+			path = Navigator.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5BEBBE0828BDFD0B0079FC73 /* Project object */;
 }

@@ -77,11 +77,12 @@ extension PostViewController: UITableViewDataSource, UITableViewDelegate {
         let post = publications[indexPath.row]
         
         let postViewModel = PostTableViewCell.Post(
-            author: post.author,
-            image: post.image,
-            description: post.description,
-            likes: "Likes: \(post.likes)",
-            views: "Views: \(post.views)"
+            postId: 0,
+            postAuthor: post.author,
+            postImage: post.image,
+            postDescription: post.description,
+            postLikes: post.likes,
+            postViews: post.views
         )
         cell.setup(with: postViewModel)
         return cell
