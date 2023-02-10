@@ -90,7 +90,6 @@ class PostTableViewCell: UITableViewCell {
         self.postId = post.postId
         self.imagePost = post.postImage
         self.likesPost = post.postLikes
-        print(post.postLikes)
         self.viewsPost = post.postViews
     }
     
@@ -128,7 +127,7 @@ class PostTableViewCell: UITableViewCell {
     @objc func addToFavotire(_ sender: UITapGestureRecognizer) {
 
              let posts = CoreDataModel().getPosts()
-             var postIndexes : [Int] = []
+             var postIndexes: [Int] = []
 
              if posts.isEmpty {
                  print("post is empty")
