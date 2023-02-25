@@ -9,9 +9,11 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     
+    var coreDataModel = CoreDataModel()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-//        tableView.delegate = self
+        tableView.delegate = self
         tableView.dataSource = self
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.sectionFooterHeight = 0
@@ -24,11 +26,12 @@ class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Favorite post"
+        self.title = "Favorite posts"
         view.backgroundColor = .white
         
+        let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
         let clear = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clear))
-        navigationItem.rightBarButtonItems = [clear]
+        navigationItem.rightBarButtonItems = [clear, search]
         
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -41,23 +44,48 @@ class FavoriteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        coreDataModel.getPosts()
         tableView.reloadData()
     }
     
+    @objc func search() {
+        showInputDialog(title: "query:", actionHandler:  { text in
+            if let result = text {
+                self.coreDataModel.getResults(query: result)
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
     @objc func clear() {
-        CoreDataModel().delete()
+        CoreDataModel().getPosts()
         tableView.reloadData()
     }
 }
 
-extension FavoriteViewController : UITableViewDataSource {
+extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CoreDataModel().favoritePosts.count
+        return coreDataModel.favoritePosts.count
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return UISwipeActionsConfiguration(actions: [
+            makeDeleteContextualAction(forRowAt: indexPath)
+        ])
+    }
+    
+    private func makeDeleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
+        return UIContextualAction(style: .destructive, title: "Delete") { (action, swipeButtonView, completion) in
+            self.coreDataModel.deleteFromFavorite(index: indexPath.row)
+            self.coreDataModel.getPosts()
+            self.tableView.reloadData()
+            completion(true)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,7 +95,7 @@ extension FavoriteViewController : UITableViewDataSource {
             return cell
         }
         
-        let post = CoreDataModel().favoritePosts[indexPath.row]
+        let post = coreDataModel.favoritePosts[indexPath.row]
         
         let postViewModel = PostTableViewCell.Post (
             postId: indexPath.row,
@@ -82,3 +110,31 @@ extension FavoriteViewController : UITableViewDataSource {
         
     }
 }
+
+extension UIViewController {
+     func showInputDialog(title: String? = nil,
+                          subtitle: String? = nil,
+                          actionTitle: String? = "Search",
+                          cancelTitle: String? = "Cancel",
+                          inputPlaceholder: String? = nil,
+                          inputKeyboardType:UIKeyboardType = UIKeyboardType.default,
+                          cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
+                          actionHandler: ((_ text: String?) -> Void)? = nil) {
+
+         let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
+         alert.addTextField { (textField:UITextField) in
+             textField.placeholder = inputPlaceholder
+             textField.keyboardType = inputKeyboardType
+         }
+         alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { (action: UIAlertAction) in
+             guard let textField =  alert.textFields?.first else {
+                 actionHandler?(nil)
+                 return
+             }
+             actionHandler?(textField.text)
+         }))
+         alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
+
+         self.present(alert, animated: true, completion: nil)
+     }
+ }

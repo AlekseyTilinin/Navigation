@@ -11,6 +11,9 @@ import UIKit
 
 
 class CoreDataModel {
+    
+    var favoritePosts: [Favorite] = []
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Navigator")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -21,21 +24,13 @@ class CoreDataModel {
         return container
     }()
     
-    func saveContext() {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
+    lazy var backgroundContext: NSManagedObjectContext = {
+            let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+            context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+            return context
+        }()
     
-    var favoritePosts: [Favorite] = []
-    
-    func getPosts() -> [Favorite] {
+    @discardableResult func getPosts() -> [Favorite] {
         let answer = Favorite.fetchRequest()
         do {
             let posts = try persistentContainer.viewContext.fetch(answer)
@@ -47,9 +42,43 @@ class CoreDataModel {
         return []
     }
     
-    init() {
-        getPosts()
-    }
+    @discardableResult func getResults(query : String) -> [Favorite]{
+            let answer = Favorite.fetchRequest()
+            answer.predicate = NSPredicate(format: "author LIKE %@", query)
+            do {
+                let posts = try persistentContainer.viewContext.fetch(answer)
+                favoritePosts = posts
+                return favoritePosts
+
+            } catch {
+                print(error)
+            }
+            return []
+        }
+    
+    func saveContext() {
+            let context = persistentContainer.viewContext
+            if context.hasChanges {
+                do {
+                    try context.save()
+                } catch {
+                    let nserror = error as NSError
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
+            }
+        }
+    
+        func saveBackgroundContext() {
+            let context = backgroundContext
+            if context.hasChanges {
+                do {
+                    try context.save()
+                } catch {
+                    let nserror = error as NSError
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
+            }
+        }
     
     func delete() {
         let answer = Favorite.fetchRequest()
@@ -63,17 +92,32 @@ class CoreDataModel {
         } catch {
             print(error)
         }
-        
     }
     
     func addToFavorite(postId: Int, author: String, descr: String, likes: Int, views: Int, image: String) {
-        let post = Favorite(context: persistentContainer.viewContext)
-        post.postId = Int32(postId)
-        post.author = author
-        post.descr = descr
-        post.likes = Int32(likes)
-        post.views = Int32(views)
-        post.image = image
-        saveContext()
+        backgroundContext.perform {
+            let post = Favorite(context: self.backgroundContext)
+            post.postId = Int32(postId)
+            post.author = author
+            post.descr = descr
+            post.likes = Int32(likes)
+            post.views = Int32(views)
+            post.image = image
+            self.saveBackgroundContext()
+        }
+    }
+    
+    func deleteFromFavorite(index : Int){
+        let answer = Favorite.fetchRequest()
+        do {
+            let posts = try persistentContainer.viewContext.fetch(answer)
+            let context = persistentContainer.viewContext
+            
+            context.delete(posts[index])
+            
+            saveContext()
+        } catch {
+            print(error)
+        }
     }
 }
