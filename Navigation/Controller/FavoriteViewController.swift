@@ -58,7 +58,7 @@ class FavoriteViewController: UIViewController {
     }
     
     @objc func clear() {
-        CoreDataModel().getPosts()
+        coreDataModel.getPosts()
         tableView.reloadData()
     }
 }
