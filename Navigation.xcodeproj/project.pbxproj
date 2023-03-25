@@ -617,6 +617,9 @@
 				DEVELOPMENT_TEAM = NPQ868V56Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -648,6 +651,9 @@
 				DEVELOPMENT_TEAM = NPQ868V56Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

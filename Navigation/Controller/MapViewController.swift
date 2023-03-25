@@ -23,7 +23,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var route: CLLocationCoordinate2D?
     
-    private lazy var locationManager : CLLocationManager = {
+    private lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
         locationManager.delegate = self
         return locationManager
@@ -31,9 +31,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private lazy var map: MKMapView = {
         let map = MKMapView()
-        map.translatesAutoresizingMaskIntoConstraints = false
         map.showsUserLocation = true
         map.delegate = self
+        map.translatesAutoresizingMaskIntoConstraints = false
         return map
     }()
     
@@ -106,12 +106,12 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             getRouteButton.heightAnchor.constraint(equalToConstant: 44),
             getRouteButton.widthAnchor.constraint(equalToConstant: 44),
             getRouteButton.rightAnchor.constraint(equalTo: super.view.rightAnchor, constant: -20),
-            getRouteButton.topAnchor.constraint(equalTo: super.view.topAnchor, constant: 70),
+            getRouteButton.bottomAnchor.constraint(equalTo: removeAllPinsButton.topAnchor, constant: -10),
             
             removeAllPinsButton.heightAnchor.constraint(equalToConstant: 44),
             removeAllPinsButton.widthAnchor.constraint(equalToConstant: 44),
             removeAllPinsButton.rightAnchor.constraint(equalTo: super.view.rightAnchor, constant: -20),
-            removeAllPinsButton.topAnchor.constraint(equalTo: super.view.topAnchor, constant: 120)
+            removeAllPinsButton.bottomAnchor.constraint(equalTo: getLocationButton.topAnchor, constant: -10)
         ])
     }
     
