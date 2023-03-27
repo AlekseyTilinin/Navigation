@@ -24,6 +24,7 @@
 		5B5736C22988AFA000D7834F /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5736C12988AFA000D7834F /* CoreDataModel.swift */; };
 		5B6151B228F392E6009D8E55 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B6151B128F392E6009D8E55 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B6151BB28F3938F009D8E55 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCED6A628BF1A93006049FF /* PostModel.swift */; };
+		5B63862129CB409A00139F58 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63862029CB409A00139F58 /* MapViewController.swift */; };
 		5B64FB0C2908AB3000038817 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B64FB0B2908AB3000038817 /* UserModel.swift */; };
 		5B7BC4CA2914B0EE0039043E /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7BC4C92914B0EE0039043E /* Checker.swift */; };
 		5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */; };
@@ -86,6 +87,7 @@
 		5B5736BF2988ACD500D7834F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		5B5736C12988AFA000D7834F /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		5B6151B128F392E6009D8E55 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		5B63862029CB409A00139F58 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5B64FB0B2908AB3000038817 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5B7BC4C92914B0EE0039043E /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				5BCED6A828C0384F006049FF /* InfoViewController.swift */,
 				5BCBB5832947D95B003E9709 /* MusicPlayerViewController.swift */,
 				5B5736BF2988ACD500D7834F /* FavoriteViewController.swift */,
+				5B63862029CB409A00139F58 /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				5BEBBE1428BDFD0C0079FC73 /* AppDelegate.swift in Sources */,
 				5B01B44728E1F02700AD65C0 /* LoginViewController.swift in Sources */,
 				5B01EDFF28E2FF5100784E49 /* UITextFieldExtension.swift in Sources */,
+				5B63862129CB409A00139F58 /* MapViewController.swift in Sources */,
 				5B18CF1528EEE05600C99985 /* PhotoModel.swift in Sources */,
 				5B5736C02988ACD500D7834F /* FavoriteViewController.swift in Sources */,
 				5B5736C22988AFA000D7834F /* CoreDataModel.swift in Sources */,
@@ -613,6 +617,9 @@
 				DEVELOPMENT_TEAM = NPQ868V56Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -644,6 +651,9 @@
 				DEVELOPMENT_TEAM = NPQ868V56Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Приложению необходим доступ к Вашей геопозиции, для отоброжения Вашего местоположения на карте";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
