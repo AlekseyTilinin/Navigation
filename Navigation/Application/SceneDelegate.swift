@@ -44,11 +44,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                             favoriteTabNavigationController,
                                             mapTabNavigationController]
         
-        let item1 = UITabBarItem(title: "Profile", image:  UIImage(systemName: "person.circle"), tag: 0)
-        let item2 = UITabBarItem(title: "Feed", image: UIImage(systemName: "newspaper"), tag: 1)
-        let item3 = UITabBarItem(title: "Music", image: UIImage(systemName: "music.note.list"), tag: 2)
-        let item4 = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star"), tag: 4)
-        let item5 = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 5)
+        let item1 = UITabBarItem(title: String(localized: "firstTabBarTitle"), image:  UIImage(systemName: "person.circle"), tag: 0)
+        let item2 = UITabBarItem(title: String(localized: "secondTabBarTitle"), image: UIImage(systemName: "newspaper"), tag: 1)
+        let item3 = UITabBarItem(title: String(localized: "thirdTabBarTitle"), image: UIImage(systemName: "music.note.list"), tag: 2)
+        let item4 = UITabBarItem(title: String(localized: "fouthTabBarTitle"), image: UIImage(systemName: "star"), tag: 4)
+        let item5 = UITabBarItem(title: String(localized: "fifthTabBarTitle"), image: UIImage(systemName: "map"), tag: 5)
         
         loginTabNavigationController.tabBarItem = item1
         feedTabNavigationController.tabBarItem = item2

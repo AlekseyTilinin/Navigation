@@ -27,6 +27,8 @@
 		5B63862129CB409A00139F58 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63862029CB409A00139F58 /* MapViewController.swift */; };
 		5B64FB0C2908AB3000038817 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B64FB0B2908AB3000038817 /* UserModel.swift */; };
 		5B7BC4CA2914B0EE0039043E /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7BC4C92914B0EE0039043E /* Checker.swift */; };
+		5B98F9EE29DB928E005F6CE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B98F9F029DB928E005F6CE0 /* LaunchScreen.storyboard */; };
+		5B98F9F229DBA3B5005F6CE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B98F9E829DB91BE005F6CE0 /* Localizable.strings */; };
 		5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */; };
 		5BC1009D2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BC1009C2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 */; };
 		5BC1009F2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BC1009E2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 */; };
@@ -42,7 +44,6 @@
 		5BEBBE1428BDFD0C0079FC73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1328BDFD0C0079FC73 /* AppDelegate.swift */; };
 		5BEBBE1628BDFD0C0079FC73 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1528BDFD0C0079FC73 /* SceneDelegate.swift */; };
 		5BEBBE1D28BDFD0D0079FC73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */; };
-		5BEBBE2028BDFD0D0079FC73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BEBBE1E28BDFD0D0079FC73 /* LaunchScreen.storyboard */; };
 		5BEBBE2A28BEC9F80079FC73 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE2928BEC9F80079FC73 /* FeedViewController.swift */; };
 		5BEBBE2C28BECA750079FC73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE2B28BECA750079FC73 /* ProfileViewController.swift */; };
 		5BEBBE3528BEE9820079FC73 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBBE3428BEE9820079FC73 /* PostViewController.swift */; };
@@ -90,6 +91,9 @@
 		5B63862029CB409A00139F58 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5B64FB0B2908AB3000038817 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5B7BC4C92914B0EE0039043E /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		5B98F9E729DB91BE005F6CE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B98F9E929DB91D6005F6CE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B98F9EF29DB928E005F6CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5BC1009C2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Patti Page - Jingle Bells.mp3"; sourceTree = "<group>"; };
 		5BC1009E2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Platters - Hey Santa Claus.mp3"; sourceTree = "<group>"; };
@@ -104,7 +108,6 @@
 		5BEBBE1328BDFD0C0079FC73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BEBBE1528BDFD0C0079FC73 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5BEBBE1F28BDFD0D0079FC73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BEBBE2728BE09B10079FC73 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BEBBE2928BEC9F80079FC73 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		5BEBBE2B28BECA750079FC73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -224,8 +227,9 @@
 				5B1684C9292852E300F0C36E /* View */,
 				5B1684CA2928530500F0C36E /* Controller */,
 				5BCBB58B2947EF07003E9709 /* Music */,
+				5B98F9E829DB91BE005F6CE0 /* Localizable.strings */,
 				5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */,
-				5BEBBE1E28BDFD0D0079FC73 /* LaunchScreen.storyboard */,
+				5B98F9F029DB928E005F6CE0 /* LaunchScreen.storyboard */,
 				5BEBBE2728BE09B10079FC73 /* Info.plist */,
 				5BE9E4B1296588A700E2A5FC /* GoogleService-Info.plist */,
 			);
@@ -324,6 +328,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 5BEBBE0728BDFD0B0079FC73;
 			packageReferences = (
@@ -353,10 +358,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BEBBE2028BDFD0D0079FC73 /* LaunchScreen.storyboard in Resources */,
 				5BC1009F2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 in Resources */,
+				5B98F9F229DBA3B5005F6CE0 /* Localizable.strings in Resources */,
 				5BE9E4B2296588A700E2A5FC /* GoogleService-Info.plist in Resources */,
 				5BC1009D2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 in Resources */,
+				5B98F9EE29DB928E005F6CE0 /* LaunchScreen.storyboard in Resources */,
 				5BEBBE1D28BDFD0D0079FC73 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,10 +423,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5BEBBE1E28BDFD0D0079FC73 /* LaunchScreen.storyboard */ = {
+		5B98F9E829DB91BE005F6CE0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5BEBBE1F28BDFD0D0079FC73 /* Base */,
+				5B98F9E729DB91BE005F6CE0 /* en */,
+				5B98F9E929DB91D6005F6CE0 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		5B98F9F029DB928E005F6CE0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B98F9EF29DB928E005F6CE0 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -442,7 +457,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,9 +467,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "alexeytilinin-yandex.ru.StorageService";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -474,7 +492,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,9 +502,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "alexeytilinin-yandex.ru.StorageService";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -496,6 +517,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -557,6 +579,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -624,7 +647,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -637,7 +660,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -658,7 +681,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -671,7 +694,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

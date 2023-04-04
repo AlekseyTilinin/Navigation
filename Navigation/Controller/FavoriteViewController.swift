@@ -26,7 +26,7 @@ class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Favorite posts"
+        self.title = String(localized: "favoriteNavigationTitle")
         view.backgroundColor = .white
         
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
@@ -49,7 +49,7 @@ class FavoriteViewController: UIViewController {
     }
     
     @objc func search() {
-        showInputDialog(title: "query:", actionHandler:  { text in
+        showInputDialog(title: String(localized: "searchTitle"), actionHandler:  { text in
             if let result = text {
                 self.coreDataModel.getResults(query: result)
                 self.tableView.reloadData()
@@ -80,7 +80,7 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     private func makeDeleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
-        return UIContextualAction(style: .destructive, title: "Delete") { (action, swipeButtonView, completion) in
+        return UIContextualAction(style: .destructive, title: String(localized: "deleteContextualAction")) { (action, swipeButtonView, completion) in
             self.coreDataModel.deleteFromFavorite(index: indexPath.row)
             self.coreDataModel.getPosts()
             self.tableView.reloadData()
@@ -114,8 +114,8 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
 extension UIViewController {
      func showInputDialog(title: String? = nil,
                           subtitle: String? = nil,
-                          actionTitle: String? = "Search",
-                          cancelTitle: String? = "Cancel",
+                          actionTitle: String? = String(localized: "showInputDialogActionTitle"),
+                          cancelTitle: String? = String(localized: "showInputDialogCancelTitle"),
                           inputPlaceholder: String? = nil,
                           inputKeyboardType:UIKeyboardType = UIKeyboardType.default,
                           cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
