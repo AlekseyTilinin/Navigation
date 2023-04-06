@@ -29,6 +29,7 @@
 		5B7BC4CA2914B0EE0039043E /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7BC4C92914B0EE0039043E /* Checker.swift */; };
 		5B98F9EE29DB928E005F6CE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B98F9F029DB928E005F6CE0 /* LaunchScreen.storyboard */; };
 		5B98F9F229DBA3B5005F6CE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B98F9E829DB91BE005F6CE0 /* Localizable.strings */; };
+		5B98F9F629DF30D9005F6CE0 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 5B98F9F829DF30D9005F6CE0 /* Localizable.stringsdict */; };
 		5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */; };
 		5BC1009D2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BC1009C2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 */; };
 		5BC1009F2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BC1009E2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 */; };
@@ -94,6 +95,8 @@
 		5B98F9E729DB91BE005F6CE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B98F9E929DB91D6005F6CE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B98F9EF29DB928E005F6CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5B98F9F729DF30D9005F6CE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5B98F9F929DF30DB005F6CE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5BC1009C2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Patti Page - Jingle Bells.mp3"; sourceTree = "<group>"; };
 		5BC1009E2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Platters - Hey Santa Claus.mp3"; sourceTree = "<group>"; };
@@ -228,6 +231,7 @@
 				5B1684CA2928530500F0C36E /* Controller */,
 				5BCBB58B2947EF07003E9709 /* Music */,
 				5B98F9E829DB91BE005F6CE0 /* Localizable.strings */,
+				5B98F9F829DF30D9005F6CE0 /* Localizable.stringsdict */,
 				5BEBBE1C28BDFD0D0079FC73 /* Assets.xcassets */,
 				5B98F9F029DB928E005F6CE0 /* LaunchScreen.storyboard */,
 				5BEBBE2728BE09B10079FC73 /* Info.plist */,
@@ -364,6 +368,7 @@
 				5BC1009D2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 in Resources */,
 				5B98F9EE29DB928E005F6CE0 /* LaunchScreen.storyboard in Resources */,
 				5BEBBE1D28BDFD0D0079FC73 /* Assets.xcassets in Resources */,
+				5B98F9F629DF30D9005F6CE0 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +443,15 @@
 				5B98F9EF29DB928E005F6CE0 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5B98F9F829DF30D9005F6CE0 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B98F9F729DF30D9005F6CE0 /* en */,
+				5B98F9F929DF30DB005F6CE0 /* ru */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
