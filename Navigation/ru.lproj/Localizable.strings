@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Aleksey on 04.04.2023.
+  
+*/
+
+// TabBar Navigation
+
+ "firstTabBarTitle" = "Профиль";
+ "secondTabBarTitle" = "Новости";
+ "thirdTabBarTitle" = "Музыка";
+ "fouthTabBarTitle" = "Избранное";
+ "fifthTabBarTitle" = "Карты";
+
+ // Feed screen
+
+"showSomePostButtonTitle" = "Показать новостной пост";
+"showNewPostButtonTitle" = "Показать новый пост";
+"checkGuessButtonTitle" = " Проверить секретное слово ";
+"resultSuccess" = "Успех";
+"resultFail" = "Провал";
+"feedNavigationTitle" = "Новости";
+
+// Login screen
+
+"inputLoginPlaceholder" = "Введите логин";
+"inputPasswordPlaceholder" = "Введите пароль";
+"loginButtonTitle" = "Войти";
+"registrationButtonTitle" = "Зарегестрироваться";
+"alertBadPasswordTitle" = "Ошибка";
+"alertBadPasswordAction" = "Пробовать снова";
+"alertSuccessTitle" = "Успех";
+"alertBadLoginTitle" = "Ошибка";
+"alertBadLoginMessege" = "Вы хотите зарегестрировать нового пользователя?";
+"alertBadLoginFirstAction" = "Да";
+"alertBadLoginSecondAction" = "Нет";
+"alertRegistrationTitle" = "Ошибка";
+"alertRegistrationAction" = "Пробовать снова";
+
+// Photos screen
+
+"photosNavigationTitle" = "Галерея";
+
+// Music screen
+
+"musicNavigationTitle" = "Музыка";
+
+// Favorite screen
+
+"favoriteNavigationTitle" = "Избранное";
+"searchTitle" = "Запрос:";
+"deleteContextualAction" = "Удалить";
+"showInputDialogActionTitle" = "Поиск";
+"showInputDialogCancelTitle" = "Отмена";

@@ -73,7 +73,7 @@ class MusicPlayerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Music"
+        self.title = String(localized: "musicNavigationTitle")
         view.backgroundColor = .systemBackground
         addViews()
         addConstraints()

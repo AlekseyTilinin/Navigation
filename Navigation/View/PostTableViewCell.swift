@@ -84,8 +84,11 @@ class PostTableViewCell: UITableViewCell {
         self.postAuthor.text = post.postAuthor
         self.postDescription.text = post.postDescription
         self.postImage.image = UIImage(named: "\(post.postImage)")
-        self.postLikes.text = "Likes: \(post.postLikes)"
+//        self.postLikes.text = "Likes: \(post.postLikes)"
         self.postViews.text = "Views: \(post.postViews)"
+        let formattedString = NSLocalizedString("likesCount", comment: "")
+        let string = String(format: formattedString, Int(post.postLikes))
+        self.postLikes.text = string
         
         self.postId = post.postId
         self.imagePost = post.postImage

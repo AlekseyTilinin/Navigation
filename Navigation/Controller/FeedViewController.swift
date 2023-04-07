@@ -17,9 +17,9 @@ class FeedViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var showSomePostButton: CustomButton = CustomButton(title: "Show post feed")
+    private lazy var showSomePostButton: CustomButton = CustomButton(title: String(localized: "showSomePostButtonTitle"))
     
-    private lazy var showNewPostButton: CustomButton = CustomButton(title: "Show info")
+    private lazy var showNewPostButton: CustomButton = CustomButton(title: String(localized: "showNewPostButtonTitle"))
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
@@ -30,7 +30,7 @@ class FeedViewController: UIViewController {
         return textField
     }()
     
-    private lazy var checkGuessButton: CustomButton = CustomButton(title: "Check secred word")
+    private lazy var checkGuessButton: CustomButton = CustomButton(title: String( localized: "checkGuessButtonTitle"))
     
     private lazy var resultIndicator: UILabel = {
         let label = UILabel()
@@ -63,10 +63,10 @@ class FeedViewController: UIViewController {
             let check: Bool = FeedModel().check(word: self.textField.text!)
             if check == true {
                 resultIndicator.backgroundColor = .green
-                resultIndicator.text = "Успех!"
+                resultIndicator.text = String(localized: "resultSuccess")
             } else {
                 resultIndicator.backgroundColor = .red
-                resultIndicator.text = "Провал!"
+                resultIndicator.text = String(localized: "resultFail")
             }
         }
     }
@@ -102,7 +102,7 @@ class FeedViewController: UIViewController {
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isHidden = true
-        self.navigationItem.title = "Feed"
+        self.navigationItem.title = String(localized: "feedNavigationTitle")
     }
 }
 

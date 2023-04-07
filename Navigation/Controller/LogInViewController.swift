@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
         textField.layer.cornerRadius = 10
         textField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         textField.layer.borderWidth = 0.5
-        textField.placeholder = "Введите логин"
+        textField.placeholder = String(localized: "inputLoginPlaceholder")
         textField.clearButtonMode = .whileEditing
         textField.setPaddingPoints(15)
         textField.keyboardType = .emailAddress
@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.tintColor = UIColor(named: "AccentColor")
         textField.autocapitalizationType = .none
-        textField.placeholder = "Введите пароль"
+        textField.placeholder = String(localized: "inputPasswordPlaceholder")
         textField.clearButtonMode = .whileEditing
         textField.setPaddingPoints(15)
         textField.isSecureTextEntry = true
@@ -75,8 +75,8 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    private lazy var loginButton: CustomButton = CustomButton(title: "Login")
-    private lazy var registrationButton: CustomButton = CustomButton(title: "Registration")
+    private lazy var loginButton: CustomButton = CustomButton(title: String(localized: "loginButtonTitle"))
+    private lazy var registrationButton: CustomButton = CustomButton(title: String(localized: "registrationButtonTitle"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -189,29 +189,29 @@ class LoginViewController: UIViewController {
     }
     
     func alertBadPassword(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Try again", style: .default))
+        let alert = UIAlertController(title: String(localized: "alertBadPasswordTitle"), message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String(localized: "alertBadPasswordAction"), style: .default))
         self.present(alert, animated: true, completion: nil)
     }
     
     func alertSuccess(message: String) {
-        let alert = UIAlertController(title: "Success", message: message, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: String(localized: "alertSuccessTitle"), message: message, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         self.present(alert, animated: true, completion: nil)
     }
     
     func alertBadLogin(message: String, complition: @escaping (Bool) -> Void) {
-        let alert = UIAlertController(title: "Error", message: "Do you want to register new user?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default) { action in
+        let alert = UIAlertController(title: String(localized: "alertBadLoginTitle"), message: String(localized: "alertBadLoginMessege"), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String(localized: "alertBadLoginFirstAction"), style: .default) { action in
             complition(true)
         })
-        alert.addAction(UIAlertAction(title: "No", style: .destructive))
+        alert.addAction(UIAlertAction(title: String(localized: "alertBadLoginSecondAction"), style: .destructive))
         self.present(alert, animated: true, completion: nil)
     }
     
     func alertRegistration(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Try again", style: .cancel))
+        let alert = UIAlertController(title: String(localized: "alertRegistrationTitle"), message: message, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: String(localized: "alertRegistrationAction"), style: .cancel))
         self.present(alert, animated: true, completion: nil)
     }
         

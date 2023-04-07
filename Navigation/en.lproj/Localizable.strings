@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Aleksey on 04.04.2023.
+  
+*/
+
+// TabBar Navigation
+
+ "firstTabBarTitle" = "Profile";
+ "secondTabBarTitle" = "Feed";
+ "thirdTabBarTitle" = "Music";
+ "fouthTabBarTitle" = "Favorite";
+ "fifthTabBarTitle" = "Map";
+
+ // Feed screen
+
+"showSomePostButtonTitle" = "Show post feed";
+"showNewPostButtonTitle" = "Show info";
+"checkGuessButtonTitle" = " Check secred word ";
+"resultSuccess" = "Success";
+"resultFail" = "Fail";
+"feedNavigationTitle" = "Feed";
+
+// Login screen
+
+"inputLoginPlaceholder" = "Set your login";
+"inputPasswordPlaceholder" = "Set your password";
+"loginButtonTitle" = "Login";
+"registrationButtonTitle" = "Registration";
+"alertBadPasswordTitle" = "Error";
+"alertBadPasswordAction" = "Try again";
+"alertSuccessTitle" = "Success";
+"alertBadLoginTitle" = "Error";
+"alertBadLoginMessege" = "Do you want to register new user?";
+"alertBadLoginFirstAction" = "Yes";
+"alertBadLoginSecondAction" = "No";
+"alertRegistrationTitle" = "Error";
+"alertRegistrationAction" = "Try again";
+
+// Photos screen
+
+"photosNavigationTitle" = "Photo Gallery";
+
+// Music screen
+
+"musicNavigationTitle" = "Music";
+
+// Favorite screen
+
+"favoriteNavigationTitle" = "Favorite posts";
+"searchTitle" = "query:";
+"deleteContextualAction" = "Delete";
+"showInputDialogActionTitle" = "Search";
+"showInputDialogCancelTitle" = "Cancel";
+
+
