@@ -34,8 +34,8 @@ class LoginViewController: UIViewController {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.backgroundColor = .systemGray6
-        stackView.layer.borderColor = UIColor.lightGray.cgColor
+        stackView.backgroundColor = colorSecondaryBackground
+        stackView.layer.borderColor = colorBorder.cgColor
         stackView.layer.borderWidth = 0.5
         stackView.layer.cornerRadius = 10
         stackView.distribution = .fillEqually
@@ -45,11 +45,11 @@ class LoginViewController: UIViewController {
     
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .black
+        textField.textColor = colorText
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.tintColor = UIColor(named: "AccentColor")
         textField.autocapitalizationType = .none
-        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderColor = colorBorder.cgColor
         textField.layer.cornerRadius = 10
         textField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         textField.layer.borderWidth = 0.5
@@ -63,7 +63,7 @@ class LoginViewController: UIViewController {
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .black
+        textField.textColor = colorText
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.tintColor = UIColor(named: "AccentColor")
         textField.autocapitalizationType = .none
@@ -80,7 +80,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = colorMainBackground
         self.setupGestures()
         self.buttonPressed()
         self.addViews()

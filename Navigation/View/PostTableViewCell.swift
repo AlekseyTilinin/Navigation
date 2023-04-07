@@ -28,6 +28,7 @@ class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "postAuthor"
         label.numberOfLines = 2
+        label.textColor = colorText
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -46,6 +47,7 @@ class PostTableViewCell: UITableViewCell {
         let description = UILabel()
         description.text = "postDescription"
         description.numberOfLines = 0
+        description.textColor = colorText
         description.font = UIFont.systemFont(ofSize: 14)
         description.translatesAutoresizingMaskIntoConstraints = false
         return description
@@ -54,6 +56,7 @@ class PostTableViewCell: UITableViewCell {
     private lazy var postLikes: UILabel = {
         let likes = UILabel()
         likes.text = "postLikes"
+        likes.textColor = colorText
         likes.font = UIFont.systemFont(ofSize: 16)
         likes.translatesAutoresizingMaskIntoConstraints = false
         return likes
@@ -62,6 +65,7 @@ class PostTableViewCell: UITableViewCell {
     private lazy var postViews: UILabel = {
         let views = UILabel()
         views.text = "postViews"
+        views.textColor = colorText
         views.font = UIFont.systemFont(ofSize: 16)
         views.translatesAutoresizingMaskIntoConstraints = false
         return views
@@ -84,7 +88,6 @@ class PostTableViewCell: UITableViewCell {
         self.postAuthor.text = post.postAuthor
         self.postDescription.text = post.postDescription
         self.postImage.image = UIImage(named: "\(post.postImage)")
-//        self.postLikes.text = "Likes: \(post.postLikes)"
         self.postViews.text = "Views: \(post.postViews)"
         let formattedString = NSLocalizedString("likesCount", comment: "")
         let string = String(format: formattedString, Int(post.postLikes))

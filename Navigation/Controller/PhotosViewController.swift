@@ -25,6 +25,7 @@ class PhotosViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DeafaultCell")
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCell")
+        collectionView.backgroundColor = colorMainBackground
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,11 +37,8 @@ class PhotosViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         self.title = String(localized: "photosNavigationTitle")
         
-        view.backgroundColor = .white
-        
         addViews()
         addConstraints()
-        
         processImagesOnThread()
     }
     

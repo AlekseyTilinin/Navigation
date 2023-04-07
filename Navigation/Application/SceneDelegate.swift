@@ -56,8 +56,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         favoriteTabNavigationController.tabBarItem = item4
         mapTabNavigationController.tabBarItem = item5
 
-        UITabBar.appearance().tintColor = UIColor(named: "AccentColor")
-        UITabBar.appearance().backgroundColor = .systemBackground
+//        UITabBar.appearance().tintColor = UIColor(named: "AccentColor")
+//        UITabBar.appearance().backgroundColor = .systemBackground
+        
+        UITabBar.appearance().tintColor = colorTabBarTint
+        UITabBar.appearance().backgroundColor = colorTabBarMainBackground
         
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = tabBarController

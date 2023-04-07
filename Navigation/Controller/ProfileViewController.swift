@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
     
     private lazy var hiddenView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = colorMainBackground
         view.alpha = 0
         view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +48,7 @@ class ProfileViewController: UIViewController {
     private lazy var hiddenCloseView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "xmark")
-        image.tintColor = .white
+        image.tintColor = colorText
         image.isUserInteractionEnabled = true
         image.isHidden = true
         image.translatesAutoresizingMaskIntoConstraints = false

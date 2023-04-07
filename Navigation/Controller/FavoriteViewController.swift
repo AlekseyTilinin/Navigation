@@ -27,7 +27,7 @@ class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String(localized: "favoriteNavigationTitle")
-        view.backgroundColor = .white
+        view.backgroundColor = colorMainBackground
         
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
         let clear = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clear))

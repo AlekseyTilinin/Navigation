@@ -24,6 +24,7 @@ class FeedViewController: UIViewController {
     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.layer.borderWidth = 0.5
+        textField.backgroundColor = colorSecondaryBackground
         textField.clearButtonMode = .whileEditing
         textField.setPaddingPoints(15)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +35,7 @@ class FeedViewController: UIViewController {
     
     private lazy var resultIndicator: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .white
+        label.backgroundColor = colorSecondaryBackground
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -92,7 +93,7 @@ class FeedViewController: UIViewController {
         navBarCustomization()
     }
     
-    func navBarCustomization () {
+    func navBarCustomization() {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .systemBackground
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]

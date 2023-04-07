@@ -25,7 +25,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.text = "Surprised Cat"
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = .black
+        label.textColor = colorText
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -41,15 +41,15 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private let statusTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = .white
+        textField.backgroundColor = colorSecondaryBackground
         textField.placeholder = "Enter status"
         textField.setPaddingPoints(10)
         textField.clearButtonMode = .whileEditing
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderColor = colorBorder.cgColor
         textField.font = UIFont.boldSystemFont(ofSize: 15)
-        textField.textColor = .black
+        textField.textColor = colorText
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         return textField
