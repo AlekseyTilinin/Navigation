@@ -12,7 +12,7 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var photosTitle: UILabel = {
         let label = UILabel()
         label.text = "Photos"
-        label.textColor = .black
+        label.textColor = colorText
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -21,7 +21,7 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var arrowImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "arrow.right")
-        image.tintColor = .black
+        image.tintColor = colorText
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
