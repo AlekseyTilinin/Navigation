@@ -3,7 +3,6 @@
 //  Navigation
 //
 //  Created by Aleksey on 26.09.2022.
-//
 
 import UIKit
 import RealmSwift
@@ -45,6 +44,7 @@ class LoginViewController: UIViewController {
     
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
+        textField.text = "asw@mail.ru"
         textField.textColor = colorText
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.tintColor = UIColor(named: "AccentColor")
@@ -63,6 +63,7 @@ class LoginViewController: UIViewController {
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
+        textField.text = "123456"
         textField.textColor = colorText
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.tintColor = UIColor(named: "AccentColor")
@@ -76,7 +77,10 @@ class LoginViewController: UIViewController {
     }()
     
     private lazy var loginButton: CustomButton = CustomButton(title: String(localized: "loginButtonTitle"))
+    
     private lazy var registrationButton: CustomButton = CustomButton(title: String(localized: "registrationButtonTitle"))
+    
+    private lazy var loginBiometryButton: CustomButton = CustomButton(title: "Face ID")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,30 +127,30 @@ class LoginViewController: UIViewController {
     }
     
     private func buttonPressed() {
-        
+
         loginButton.buttonAction = { [self] in
-            
+
             let enteredLogin = loginTextField.text!
             let enteredPassword = passwordTextField.text!
-            
+
             Checker().checkCredentials(login: enteredLogin, password: enteredPassword) { result in
                 if result == "Success authorization" {
-                    
+
                     let realm = try! Realm()
                     let users = realm.objects(RealmUser.self)
                     let user = users.where {
                         $0.login == enteredLogin && $0.password == enteredPassword
                     }
-                
+
                     try! realm.write {
                         user[0].lastAuth = NSDate().timeIntervalSince1970
                         UserDefaults.standard.set(user[0].login, forKey: "userLogin")
                     }
-                    
+
                     let profileViewController = ProfileViewController()
                     profileViewController.user = self.userLogin!.user
                     self.navigationController?.pushViewController(profileViewController, animated: true)
-                    
+
                 } else if result == "There is no user record corresponding to this identifier. The user may have been deleted." {
                     self.alertRegistration(message: result)
                 } else {
@@ -154,27 +158,48 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-    
-        
+
+        loginBiometryButton.buttonAction = {
+            LocalAuthorizationService().authorizeIfPossible { Bool, Error in
+                if Bool {
+                    let enteredLogin = self.loginTextField.text!
+                    let enteredPassword = self.passwordTextField.text!
+
+                    Checker().checkCredentials(login: enteredLogin, password: enteredPassword) { result in
+                        if result == "Success authorization" {
+                            let profileViewController = ProfileViewController()
+                            profileViewController.user = self.userLogin!.user
+                            self.navigationController?.pushViewController(profileViewController, animated: true)
+
+                        } else if result == "There is no user record corresponding to this identifier. The user may have been deleted." {
+                            self.alertRegistration(message: result)
+                        } else {
+                            self.alertBadPassword(message: result)
+                        }
+                    }
+                }
+            }
+        }
+
         registrationButton.buttonAction = { [self] in
-            
+
             let enteredLogin = loginTextField.text!
             let enteredPassword = passwordTextField.text!
-            
+
             Checker().checkCredentials(login: enteredLogin, password: enteredPassword) { result in
                 if result == "There is no user record corresponding to this identifier. The user may have been deleted." {
                     self.alertBadLogin(message: result) { result in
                         Checker().signUp(login: enteredLogin, password: enteredPassword) { result in
                             if result == "Success registration" {
                                 self.alertSuccess(message: result)
-                                
+
                                 let realm = try! Realm()
                                 let newUser = RealmUser(login: enteredLogin, password: enteredPassword)
-                              
+
                                 try! realm.write {
                                     realm.add(newUser)
                                 }
-                                
+
                                 let profileViewController = ProfileViewController()
                                 profileViewController.user = self.userLogin!.user
                                 self.navigationController?.pushViewController(profileViewController, animated: true)
@@ -187,19 +212,19 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
+
     func alertBadPassword(message: String) {
         let alert = UIAlertController(title: String(localized: "alertBadPasswordTitle"), message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String(localized: "alertBadPasswordAction"), style: .default))
         self.present(alert, animated: true, completion: nil)
     }
-    
+
     func alertSuccess(message: String) {
         let alert = UIAlertController(title: String(localized: "alertSuccessTitle"), message: message, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         self.present(alert, animated: true, completion: nil)
     }
-    
+
     func alertBadLogin(message: String, complition: @escaping (Bool) -> Void) {
         let alert = UIAlertController(title: String(localized: "alertBadLoginTitle"), message: String(localized: "alertBadLoginMessege"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String(localized: "alertBadLoginFirstAction"), style: .default) { action in
@@ -208,7 +233,7 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: String(localized: "alertBadLoginSecondAction"), style: .destructive))
         self.present(alert, animated: true, completion: nil)
     }
-    
+
     func alertRegistration(message: String) {
         let alert = UIAlertController(title: String(localized: "alertRegistrationTitle"), message: message, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: String(localized: "alertRegistrationAction"), style: .cancel))
@@ -228,6 +253,7 @@ class LoginViewController: UIViewController {
         self.stackView.addArrangedSubview(self.passwordTextField)
         self.scrollView.addSubview(self.loginButton)
         self.scrollView.addSubview(self.registrationButton)
+        self.scrollView.addSubview(self.loginBiometryButton)
     }
     
     private func addConstraints() {
@@ -256,7 +282,12 @@ class LoginViewController: UIViewController {
             self.registrationButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 16),
             self.registrationButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
             self.registrationButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            self.registrationButton.heightAnchor.constraint(equalToConstant: 50)
+            self.registrationButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            self.loginBiometryButton.topAnchor.constraint(equalTo: registrationButton.bottomAnchor, constant: 16),
+            self.loginBiometryButton.centerXAnchor.constraint(equalTo: super.view.centerXAnchor),
+            self.loginBiometryButton.heightAnchor.constraint(equalToConstant: 50),
+            self.loginBiometryButton.leftAnchor.constraint(equalTo: super.view.leftAnchor, constant: 16)
         ])
     }
     
