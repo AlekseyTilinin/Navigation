@@ -32,6 +32,7 @@
 		5B98F9F229DBA3B5005F6CE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B98F9E829DB91BE005F6CE0 /* Localizable.strings */; };
 		5B98F9F629DF30D9005F6CE0 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 5B98F9F829DF30D9005F6CE0 /* Localizable.stringsdict */; };
 		5B98F9FB29DFEF5E005F6CE0 /* UIColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B98F9FA29DFEF5E005F6CE0 /* UIColorExtention.swift */; };
+		5B9F89D72A375CAB00194F19 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9F89D62A375CAB00194F19 /* LocalNotificationsService.swift */; };
 		5BBAE5DC28D088B1005C48D8 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */; };
 		5BC1009D2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BC1009C2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 */; };
 		5BC1009F2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5BC1009E2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 */; };
@@ -101,6 +102,7 @@
 		5B98F9F729DF30D9005F6CE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5B98F9F929DF30DB005F6CE0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5B98F9FA29DFEF5E005F6CE0 /* UIColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtention.swift; sourceTree = "<group>"; };
+		5B9F89D62A375CAB00194F19 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		5BBAE5DB28D088B1005C48D8 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5BC1009C2947F9BB00146B7F /* Patti Page - Jingle Bells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Patti Page - Jingle Bells.mp3"; sourceTree = "<group>"; };
 		5BC1009E2947F9C200146B7F /* The Platters - Hey Santa Claus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Platters - Hey Santa Claus.mp3"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				5B26C52D29853AED0020F4B3 /* RealmManager.swift */,
 				5B98F9FA29DFEF5E005F6CE0 /* UIColorExtention.swift */,
 				5B6778E62A239A010035E46B /* LocalAuthorizationService.swift */,
+				5B9F89D62A375CAB00194F19 /* LocalNotificationsService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				5B1684CD29285EB000F0C36E /* FeedModel.swift in Sources */,
 				5BE9E4AB295CF5E300E2A5FC /* NetworkService.swift in Sources */,
 				5B18CF1B28EEE09000C99985 /* PhotosViewController.swift in Sources */,
+				5B9F89D72A375CAB00194F19 /* LocalNotificationsService.swift in Sources */,
 				5B1684C82920F9D600F0C36E /* CustomButton.swift in Sources */,
 				5B26C52E29853AED0020F4B3 /* RealmManager.swift in Sources */,
 				5BEBBE3528BEE9820079FC73 /* PostViewController.swift in Sources */,
